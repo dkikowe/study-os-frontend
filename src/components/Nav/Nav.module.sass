@@ -1,0 +1,63 @@
+.desktopNav
+    display: flex
+    flex-direction: column
+    height: 100vh
+    width: 90px
+    align-items: center
+    justify-content: center
+    position: absolute
+    left: 0
+    top: 0
+    gap: 30px
+
+.brain
+    padding-bottom: 30px
+
+.navBar
+    display: flex
+    flex-direction: column
+    justify-content: space-between
+    align-items: center
+    position: relative
+    height: 527px
+    width: 64px
+    background-color: #fff
+    border-radius: 30px
+    padding: 10px
+
+    .home, .ai, .bio, .math, .lang, .notes, .tags
+        border: 2px solid rgba(220, 220, 220, 0.7)
+        border-radius: 30px
+
+    .avatar
+        width: 50px
+        height: 50px
+
+.mobileNav
+    display: none
+
+@media (max-width: 572px)
+    .desktopNav
+        display: none !important
+        .brain
+            display: none !important
+    .mobileNav
+        display: flex
+        position: fixed
+        bottom: 10px
+        left: 50%
+        transform: translateX(-50%)
+        background-color: #fff
+        justify-content: space-around
+        align-items: center
+        border-top: 1px solid #ccc
+        box-shadow: 0 -1px 5px rgba(0,0,0,0.1)
+        border-radius: 30px
+        padding: 5px
+        width: 90% // Делаем адаптивную ширину
+        max-width: 375px // Максимальная ширина, но не фиксированная
+        min-width: 280px // Минимальная ширина для узких экранов
+        height: 64px
+        flex-wrap: wrap // Если элементы не помещаются, пусть переходят на новую строку
+    .navBar
+        display: none

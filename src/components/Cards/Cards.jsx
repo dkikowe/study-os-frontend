@@ -1,10 +1,9 @@
 import React, { useEffect, useState } from "react";
 import s from "./Cards.module.sass";
-import axios from "../../axios";
+import axios from "../../axios"; // проверь правильность пути к axios
 
 export default function Cards() {
   const [cards, setCards] = useState([]);
-  const [selectedSession, setSelectedSession] = useState(1);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -15,6 +14,7 @@ export default function Cards() {
           withCredentials: true,
           headers: { Authorization: `Bearer ${token}` },
         });
+        console.log("Результат /topic/get_topics/18:", topicsResponse.data);
 
         const topics = topicsResponse.data.topics || [];
         if (!topics.length) {
@@ -32,6 +32,7 @@ export default function Cards() {
             headers: { Authorization: `Bearer ${token}` },
           }
         );
+        console.log("Результат /card/get_cards:", cardsResponse.data);
 
         setCards(cardsResponse.data.cards || []);
       } catch (error) {
@@ -43,41 +44,16 @@ export default function Cards() {
   }, []);
 
   return (
-    <div className={s.cardsContainer}>
-      <div className={s.header}>
+    <div className={s.cardNumbers}>
+      <div className={s.containerCard}>
         <span className={s.label}>Session:</span>
         <button className={s.cards}>cards</button>
         <button className={s.close}>-</button>
-        {[1, 2, 3].map((num) => (
-          <button
-            key={num}
-            className={`${s.sessionButton} ${
-              selectedSession === num ? s.active : ""
-            }`}
-            onClick={() => setSelectedSession(num)}
-          >
-            {num}
-          </button>
-        ))}
-      </div>
 
-      <div className={s.cardsList}>
         {cards.map((card, index) => (
-          <div key={card.id} className={s.card}>
-            <div className={s.cardHeader}>
-              <span className={s.cardNumber}>{index + 1}</span>
-            </div>
-            <div className={s.cardContent}>
-              <div className={s.question}>
-                <strong>Question</strong>
-                <p>{card.back_card}</p>
-              </div>
-              <div className={s.answer}>
-                <strong>Answer</strong>
-                <p>{card.front_card}</p>
-              </div>
-            </div>
-          </div>
+          <button key={card.id} className={s.buttonCard}>
+            {index + 1}
+          </button>
         ))}
       </div>
     </div>

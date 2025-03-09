@@ -1,0 +1,187 @@
+.container
+    position: relative
+    .sessionsTitle
+        font-family: "Anaheim", sans-serif
+        font-weight: 600
+        font-size: 32px
+        line-height: 69%
+        letter-spacing: -0.01em
+        color: #656565
+        margin-left: 150px
+
+.sessions
+    display: flex
+    flex-direction: column
+    gap: 10px
+    padding: 20px
+    margin-left: 60px
+
+.cardContainer
+    position: relative
+    width: 260px
+    margin-bottom: 20px
+    z-index: 3
+
+.sessionCard
+    display: flex
+    align-items: stretch
+    background: #f5f5f5
+    border-radius: 12px
+    overflow: hidden
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1)
+    width: 100%
+    min-height: 120px
+    z-index: 2
+    position: relative
+
+.sessionSide
+    width: 60px
+    flex-shrink: 0
+    display: flex
+    align-items: stretch
+    justify-content: center
+    background: none
+    transition: background 0.3s ease
+    font-size: 24px
+    font-weight: bold
+    color: #fff
+
+.syncIcon
+    flex: 1
+    display: flex
+
+.syncIcon img
+    width: 100%
+    height: 100%
+    object-fit: cover
+
+.playButton
+    flex: 1
+    display: flex
+    align-items: center
+    justify-content: center
+    background: #6cc24a
+    color: #fff
+    font-size: 24px
+
+.sessionContent
+    display: flex
+    align-items: center
+    position: relative
+    flex: 1
+
+.imageWrapper
+    position: relative
+    width: 100%
+    height: 120px
+    border-radius: 0 8px 8px 0
+    overflow: hidden
+    display: flex
+    align-items: center
+    justify-content: center
+
+.sessionImage
+    object-fit: cover
+    width: 100%
+    height: 100%
+
+.overlay
+    position: absolute
+    top: 0
+    left: 0
+    width: 100%
+    height: 100%
+    display: flex
+    flex-direction: column
+    justify-content: space-between
+    padding: 8px
+    background: rgba(0, 0, 0, 0.2)
+    color: #fff
+    font-size: 14px
+
+.sessionNumber
+    background: rgba(255, 255, 255, 0.7)
+    border-radius: 4px
+    padding: 2px 6px
+    font-weight: bold
+    width: fit-content
+    font-family: "Anaheim", sans-serif
+    font-size: 16px
+    letter-spacing: -0.01em
+    text-align: center
+    color: #918e8e
+
+.sessionTitle
+    margin-top: 35px
+    margin-bottom: 0
+    font-family: "Anaheim", sans-serif
+    font-weight: 700
+    font-size: 20px
+    line-height: 110%
+    letter-spacing: -0.01em
+    text-align: left
+    color: #fff
+
+.times
+    display: flex
+    gap: 30px
+
+.cardCount
+    font-family: "Anaheim", sans-serif
+    font-weight: 700
+    font-size: 16px
+    line-height: 137%
+    letter-spacing: -0.01em
+    color: #b8b8b8
+
+.timeCodes span
+    font-family: "Anaheim", sans-serif
+    font-weight: 700
+    font-size: 12px
+    line-height: 183%
+    letter-spacing: -0.02em
+    color: rgba(181, 181, 181, 0.8)
+
+.buttons
+    position: absolute
+    bottom: -20px
+    left: 70px
+    display: flex
+    gap: 5px
+    z-index: 1
+
+.toCards, .toTimeCode
+
+    padding: 0 10px
+    border-radius: 0 0 10px 10px
+    border: none
+
+.toCards
+    backdrop-filter: blur(50px)
+    box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.03)
+    background: #FFC86F
+    font-family: "Anaheim", sans-serif
+    font-weight: 700
+    font-size: 15px
+    line-height: 147%
+    letter-spacing: -0.01em
+    text-align: center
+    color: #656565
+
+.toTimeCode
+    backdrop-filter: blur(50px)
+    box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.03)
+    background: #6F74FF
+    font-family: "Anaheim", sans-serif
+    font-weight: 700
+    font-size: 15px
+    line-height: 147%
+    letter-spacing: -0.01em
+    text-align: center
+    color: #fff
+
+@media  (max-width: 768px)
+    .sessionsTitle
+        margin-left: 20px !important
+    .sessions
+        margin-left: 0

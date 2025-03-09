@@ -1,0 +1,151 @@
+.cardNumbers
+    display: flex
+    align-items: center
+    background: white
+    padding: 10px 16px
+    border-radius: 10px
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1)
+    width: 540px
+    height: 40px
+    margin-left: 40px
+
+.containerCard
+    display: flex
+    align-items: center
+    flex-direction: row
+    gap: 10px
+    position: relative
+
+.cards
+    border-radius: 10px 10px 0 0
+    width: 48px
+    height: 18px
+    background: #656565
+    display: flex
+    justify-content: center
+    align-items: center
+    position: absolute
+    font-family: "Anaheim", sans-serif
+    font-weight: 700
+    font-size: 15px
+    line-height: 147%
+    letter-spacing: -0.01em
+    text-align: center
+    color: #ffc86f
+    border: none
+    top: -28px
+
+.close
+    border-radius: 10px 10px 0 0
+    border: none
+    width: 32px
+    height: 18px
+    position: absolute
+    top: -28px
+    right: -350px
+    background: #fff
+    color: #b0b0b0
+    font-size: 25px
+    font-weight: bold
+    display: flex
+    justify-content: center
+    align-items: center
+
+.label
+    font-family: "Anaheim", sans-serif
+    font-weight: 700
+    font-size: 16px
+    letter-spacing: -0.01em
+    text-align: center
+    color: #918e8e
+
+.buttonCard
+    background: #e0e0e0
+    border: none
+    padding: 6px 10px
+    border-radius: 6px
+    cursor: pointer
+    transition: 0.2s
+    font-family: "Anaheim", sans-serif
+    font-weight: 700
+    font-size: 16px
+    letter-spacing: -0.01em
+    text-align: center
+    color: #918e8e
+    width: 20px
+    height: 20px
+    display: flex
+    justify-content: center
+    align-items: center
+    flex-direction: row
+
+    &:hover
+        background: #d6d6d6
+@media (max-width: 768px)
+    .cardNumbers
+        width: 380px
+        margin: 0
+        margin-top: 20px
+    .close
+        right: -200px
+
+.cardsContainer
+    display: flex
+    flex-direction: column
+    background: white
+    padding: 16px
+    border-radius: 10px
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1)
+    width: 540px
+    margin-left: 40px
+
+.header
+    display: flex
+    align-items: center
+    gap: 10px
+    position: relative
+
+.cardsList
+    display: flex
+    flex-direction: column
+    gap: 12px
+    margin-top: 10px
+
+.card
+    background: #f9f9f9
+    border-radius: 8px
+    padding: 12px
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.05)
+
+.cardHeader
+    display: flex
+    align-items: center
+    margin-bottom: 6px
+
+.cardNumber
+    font-weight: bold
+    font-size: 16px
+    color: #656565
+    background: #e0e0e0
+    padding: 6px 10px
+    border-radius: 6px
+
+.cardContent
+    display: flex
+    flex-direction: column
+    gap: 6px
+
+.question, .answer
+    background: white
+    padding: 10px
+    border-radius: 6px
+    box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.1)
+
+.question strong, .answer strong
+    font-size: 14px
+    color: #656565
+
+.question p, .answer p
+    margin: 0
+    font-size: 14px
+    color: #333

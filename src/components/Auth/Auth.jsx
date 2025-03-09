@@ -28,7 +28,7 @@ export default function Auth() {
         withCredentials: true, // чтобы куки обрабатывались корректно
       });
 
-      if (response.status === 200) {
+      if (response.status === 200 && isRegister) {
         // Сервер должен вернуть access token и refresh token
         const { access_token, refresh_token } = response.data;
 
@@ -39,6 +39,11 @@ export default function Auth() {
         setError("");
 
         navigate("/home"); // редирект после успешного входа
+      }
+      if (response.status === 200 && !isRegister) {
+        setLoading(false);
+        setMessage("Successfully registered, now you can log in");
+        console.log(response.data);
       }
     } catch (error) {
       console.error("❌ Ошибка авторизации:", error);
@@ -74,62 +79,64 @@ export default function Auth() {
   };
 
   return (
-    <div className={`container ${!isRegister ? "active" : ""}`}>
-      <div className="content">
-        <div className="right">
-          <h1 className={isRegister ? "title" : "titleReg"}>
-            Study<span>OS</span>
-          </h1>
-          <input
-            className={error ? "inputErr" : "input1"}
-            type="text"
-            placeholder="Email"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-            required
-          />
-          <input
-            className={error ? "inputErr" : "input2"}
-            type="password"
-            placeholder="Password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-            required
-          />
-          {!isRegister && (
+    <div className="body">
+      <div className={`container ${!isRegister ? "active" : ""}`}>
+        <div className="content">
+          <div className="right">
+            <h1 className={isRegister ? "title" : "titleReg"}>
+              Study<span>OS</span>
+            </h1>
+            <input
+              className={error ? "inputErr" : "input1"}
+              type="text"
+              placeholder="Email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              required
+            />
             <input
               className={error ? "inputErr" : "input2"}
               type="password"
-              placeholder="Repeat password"
-              value={confirmPassword}
-              onChange={(e) => setConfirmPassword(e.target.value)}
+              placeholder="Password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
               required
             />
-          )}
-          <p className={`error ${error ? "show" : ""}`}>{error || " "}</p>
-          <p className={`success ${message ? "show1" : ""}`}>
-            {message || " "}
-          </p>
-          <button className="signIn" onClick={handleAuth}>
-            {isRegister ? "Sign In" : "Sign Up"}
-          </button>
-          <button className="signUp" onClick={toggleMode}>
-            {isRegister ? "Sign Up" : "Sign In"}
-          </button>
-        </div>
+            {!isRegister && (
+              <input
+                className={error ? "inputErr" : "input2"}
+                type="password"
+                placeholder="Repeat password"
+                value={confirmPassword}
+                onChange={(e) => setConfirmPassword(e.target.value)}
+                required
+              />
+            )}
+            <p className={`error ${error ? "show" : ""}`}>{error || " "}</p>
+            <p className={`success ${message ? "show1" : ""}`}>
+              {message || " "}
+            </p>
+            <button className="signIn" onClick={handleAuth}>
+              {isRegister ? "Sign In" : "Sign Up"}
+            </button>
+            <button className="signUp" onClick={toggleMode}>
+              {isRegister ? "Sign Up" : "Sign In"}
+            </button>
+          </div>
 
-        <div className="left">
-          <img
-            src={
-              isRegister
-                ? "/images/icons/brainLogin.svg"
-                : "/images/icons/brainRegister.svg"
-            }
-            alt="Auth Icon"
-          />
+          <div className="left">
+            <img
+              src={
+                isRegister
+                  ? "/images/icons/brainLogin.svg"
+                  : "/images/icons/brainRegister.svg"
+              }
+              alt="Auth Icon"
+            />
+          </div>
         </div>
+        {loading && <Loading />}
       </div>
-      {loading && <Loading />}
     </div>
   );
 }

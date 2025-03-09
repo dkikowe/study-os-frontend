@@ -1,0 +1,279 @@
+.container
+    position: relative
+    width: 100%
+    min-height: 100vh
+    background-color: #f5f5f5
+
+.desktopVersion
+    display: block
+
+    .title
+        position: absolute
+        top: 50px
+        left: 5%
+
+    .sessions
+        display: flex
+        margin-top: 40px
+
+    .titleDesc
+        width: 55%
+        display: flex
+        justify-content: center
+        text-align: left
+        margin: 20px 0 0 80px
+    .desc
+        font-family: "Anaheim", sans-serif
+        font-weight: 600
+        font-size: 20px
+        line-height: 110%
+        letter-spacing: -0.01em
+        text-align: justify
+        color: #918e8e
+
+    .titleText
+        .text
+            display: flex
+            flex-direction: row
+            justify-content: flex-start
+            align-items: center
+            text-align: left
+            gap: 250px
+            .icons
+                display: flex
+                flex-direction: row
+                justify-content: center
+                align-items: center
+                gap: 20px
+            .titleHead
+                font-family: "Anaheim", sans-serif
+                font-weight: 700
+                font-size: 40px
+                line-height: 55%
+                letter-spacing: -0.01em
+                color: #656565
+                padding-left: 120px
+                text-align: left
+            span
+                font-weight: 600
+                font-family: "Anaheim", sans-serif
+                font-size: 40px
+                line-height: 55%
+                letter-spacing: -0.01em
+                color: #656565
+
+    .subtitleContainer
+        border-radius: 10px
+        padding: 0 20px
+        width: 746px
+        height: 40px
+        background: #fff
+        position: fixed
+        left: 24%
+        display: flex
+        flex-direction: row
+        align-items: center
+        gap: 20px
+        justify-content: left
+
+    .subtitles
+        border-radius: 2px
+        width: 73px
+        height: 20px
+        font-family: "Anaheim", sans-serif
+        font-weight: 700
+        font-size: 16px
+        letter-spacing: -0.01em
+        text-align: center
+        color: #918e8e
+        background: #f5f5f5
+
+    .summary
+        border-radius: 2px
+        width: 126px
+        height: 20px
+        font-family: "Anaheim", sans-serif
+        font-weight: 700
+        font-size: 16px
+        letter-spacing: -0.01em
+        text-align: center
+        color: #918e8e
+        background: #f5f5f5
+
+.mobileVersion
+    display: none
+    position: absolute
+    top: 0
+    margin-top: 50px
+
+    .titleMobile
+        margin: 20px
+    .titleTextMobile
+        .textMobile
+            display: flex
+            flex-direction: row
+            justify-content: flex-start
+            align-items: center
+            gap: 20px
+        .iconsMobile
+            display: flex
+            flex-direction: row
+            justify-content: center
+            align-items: center
+            gap: 20px
+        .titleHeadMobile
+            font-family: "Anaheim", sans-serif
+            font-weight: 700
+            font-size: 30px
+            line-height: 55%
+            letter-spacing: -0.01em
+            color: #656565
+            text-align: left
+            span
+                font-weight: 600
+                font-family: "Anaheim", sans-serif
+                font-size: 30px
+                line-height: 55%
+                letter-spacing: -0.01em
+                color: #656565
+    .titleDescMobile
+        margin-top: 20px
+        .descMobile
+            font-family: "Anaheim", sans-serif
+            font-weight: 600
+            font-size: 16px
+            line-height: 110%
+            letter-spacing: -0.01em
+            text-align: justify
+            color: #918e8e
+
+    .mobileTabs
+        display: flex
+        justify-content: space-around
+        margin: 16px 0
+
+    .sessionButton, .cardsButton, .studyButton
+        border-radius: 5px
+        padding: 10px
+        width: 118px
+        height: 40px
+        font-family: "Anaheim", sans-serif
+        font-weight: 700
+        font-size: 15px
+        text-align: center
+        color: #656565
+        display: flex
+        justify-content: center
+        align-items: center
+        border: none
+        background: #fff
+        gap: 5px
+
+    .activeTab
+        font-family: "Anaheim", sans-serif
+        font-weight: 700
+        font-size: 15px
+        border-radius: 5px
+        padding: 10px
+        width: 118px
+        height: 40px
+        background: #6f74ff
+        color: #FFF
+        display: flex
+        justify-content: center
+        align-items: center
+        text-align: center
+        border: none
+        gap: 5px
+    .activeTabCards
+        font-family: "Anaheim", sans-serif
+        font-weight: 700
+        font-size: 15px
+        border-radius: 5px
+        padding: 10px
+        width: 118px
+        height: 40px
+        background: #ffc86f
+        color: #656565
+        display: flex
+        justify-content: center
+        align-items: center
+        text-align: center
+        border: none
+        gap: 5px
+
+    .subtitleContainerMobile
+        margin-top: 20px
+        display: flex
+        flex-direction: row
+        align-items: center
+        gap: 20px
+        background: #fff
+        height: 40px
+    .subtitlesMobile
+        border-radius: 2px
+        width: 73px
+        height: 20px
+        font-family: "Anaheim", sans-serif
+        font-weight: 700
+        font-size: 16px
+        letter-spacing: -0.01em
+        text-align: center
+        color: #918e8e
+        background: #f5f5f5
+        margin-left: 20px
+    .summaryMobile
+        border-radius: 2px
+        width: 126px
+        height: 20px
+        font-family: "Anaheim", sans-serif
+        font-weight: 700
+        font-size: 16px
+        letter-spacing: -0.01em
+        text-align: center
+        color: #918e8e
+        background: #f5f5f5
+
+@media (max-width: 768px)
+    .desktopVersion
+        display: none
+    .mobileVersion
+        display: flex
+        flex-direction: column
+        justify-content: center
+        align-items: center
+        .mobileTabs
+            gap: 20px
+    .container
+        min-height: 100vh
+    .title
+        position: static
+        margin-top: 0
+        left: auto
+    .titleMobile
+        margin: 0
+    .tabContent
+        margin: 0
+    .headerResponsive
+
+        display: flex !important
+        flex-direction: row !important
+        width: 95%
+        gap: 60px !important
+        justify-content: center !important
+        align-content: center !important
+
+        z-index: 999999
+        .icons
+            width: 50px
+            height: 50px
+
+        .studyOs
+            display: flex !important
+            font-family: "Anaheim", sans-serif
+            font-weight: 800
+            font-size: 40px
+            color: #656565
+
+        span
+            color: #6f74ff

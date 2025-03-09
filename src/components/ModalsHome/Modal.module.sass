@@ -46,7 +46,7 @@
       margin: 20px 0 20px 0
 
       span
-        color: blue
+        color: #6f74ff
 
     .modalInput
       width: 100%
@@ -118,7 +118,7 @@
       margin-top: 20px
 
       span
-        color: blue
+        color: #6f74ff
 
     .modalInput
       width: 100%
@@ -141,6 +141,7 @@
       width: 183px
       height: 50px
       background: #6f74ff
+      border: none
       font-family: "Anaheim", sans-serif
       font-weight: 700
       font-size: 24px
@@ -199,12 +200,12 @@
     padding: 10px
     cursor: pointer
     transition: 0.2s
-    font-size: 17px
     font-family: "Anaheim", sans-serif
-
-    img
-      width: 20px
-      margin-right: 10px
+    font-weight: 600
+    font-size: 17px
+    line-height: 129%
+    letter-spacing: -0.01em
+    color: #b0b0b0
 
     &:hover
       background: #f5f5f5
@@ -252,6 +253,9 @@
     max-height: 150px
 
 @media (max-width: 480px)
+  .iconGrid
+    grid-template-columns: repeat(4, 1fr) !important
+    grid-template-rows: repeat(4, 1fr)
   .modal
     padding: 5px
 
@@ -284,3 +288,43 @@
 
   .customDropdown
     max-height: 120px
+
+.iconGrid
+  flex: 1
+  display: grid
+  grid-template-columns: repeat(6, 1fr)
+  grid-template-rows: repeat(4, 1fr)
+  gap: 16px
+  background-color: #ffffff
+  padding: 16px
+  border-radius: 8px
+  margin-bottom: 16px
+  /* Без overflow — значит, всё уместится в 16 ячеек */
+
+.iconItem
+  background-color: #ffffff
+  border: 2px solid transparent
+  border-radius: 4px
+  color: #656565
+  display: flex
+  align-items: center
+  justify-content: center
+  cursor: pointer
+  transition: background-color 0.2s, border-color 0.2s
+
+  &:hover
+    background-color: #dcdcdc
+
+.selected
+  border-color: #0066ff
+  background-color: #dcdcdc
+  color: #656565
+
+.sphereContainer
+  display: flex
+  align-items: center
+  gap: 8px // Отступ между иконкой и текстом
+
+.sphereLabel
+  color: #656565
+  font-size: 16px

@@ -1,14 +1,23 @@
 .container
     display: flex
     flex-direction: column
-    width: 100%
+    width: 100vw
+    max-width: 100%
+    min-width: 100%
     height: auto
     margin-top: -320px
     justify-content: center
     align-items: center
+    overflow: hidden
 
     .studyOs
         display: none
+
+hr
+    display: none
+.body
+    height: 100%
+    overflow: hidden
 
 .mobileMenu
     position: absolute
@@ -45,6 +54,8 @@
     font-weight: 600
     font-size: 40px
     color: #656565
+    span
+        color: #efbc90
 
 .recently
     font-family: "Anaheim", sans-serif
@@ -57,8 +68,11 @@
     flex-direction: row
     gap: 5px
     margin-top: 15px
-    align-self: flex-start
+
     padding-bottom: 20px
+    justify-content: center
+    margin-right: 230px
+    width: 100%
 
 .cards
     display: flex
@@ -182,8 +196,18 @@
         grid-template-columns: repeat(auto-fill, minmax(200px, 1fr))
 
 @media (max-width: 576px)
-    .creatings
-        display: none
+    .recently
+        margin-left: 32px
+    hr
+        display: flex
+        width: 100%
+        height: 1px // Тонкая линия
+        background-color: rgba(115, 115, 115, 0.25) // Светло-серый цвет
+        border: none // Убираем стандартную границу
+        margin-top: 5px
+
+    body
+        overflow: auto !important
     .recentPagesText
         font-family: "Anaheim", sans-serif
         font-weight: 700
@@ -198,20 +222,19 @@
         text-align: center
 
     .headerResponsive
+        margin-top: 30px
         display: flex !important
         flex-direction: row !important
-        gap: 40px !important
-        justify-content: center !important
+        width: 100%
+        gap: 5px !important
+        justify-content: space-around !important
         align-content: center !important
-        margin-bottom: 30px
+        margin-left: 120px
+        z-index: 999999
         .avatar
             width: 50px
             height: 50px
-        .img
-            width: 35px
-            height: 35px
-            align-content: center
-            padding-top: 10px
+            margin-right: 15px
 
     .studyOs
         display: flex !important
@@ -219,6 +242,7 @@
         font-weight: 800
         font-size: 40px
         color: #656565
+        padding-left: 30px
 
     span
         color: #6f74ff
@@ -230,3 +254,7 @@
         font-size: 40px
         text-align: center
         color: #656565
+
+@media (max-width: 320px)
+    .headerResponsive
+        margin-top: 90px

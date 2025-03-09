@@ -1,14 +1,45 @@
 .desktopNav
     display: flex
     flex-direction: column
-    height: 100vh
+    height: 100hv
     width: 90px
     align-items: center
     justify-content: center
-    position: absolute
+    position: fixed
     left: 0
     top: 0
     gap: 30px
+    margin-top: 40px
+
+.spheresContainer
+    max-height: 170px // Настроить под дизайн
+    overflow-y: auto
+    display: flex
+    flex-direction: column
+    gap: 10px // Если нужно расстояние между элементами
+
+    &::-webkit-scrollbar
+        width: 3px
+
+    &::-webkit-scrollbar-thumb
+        background: #ccc
+        border-radius: 3px
+
+.spheres
+    display: flex
+    flex-direction: column
+    align-items: center
+
+.iconWrapper
+    width: 50px
+    height: 50px
+    border-radius: 50%
+    display: flex
+    align-items: center
+    justify-content: center
+    border: 2px solid #d9d9d9
+    background-color: white
+    color: #656565
 
 .brain
     padding-bottom: 30px
@@ -16,14 +47,17 @@
 .navBar
     display: flex
     flex-direction: column
-    justify-content: space-between
+    justify-content: flex-start
     align-items: center
     position: relative
-    height: 527px
     width: 64px
     background-color: #fff
     border-radius: 30px
     padding: 10px
+    min-height: 100px
+    max-height: 90vh
+    overflow-y: auto
+    gap: 10px
 
     .home, .ai, .bio, .math, .lang, .notes, .tags
         border: 2px solid rgba(220, 220, 220, 0.7)
@@ -35,6 +69,64 @@
 
 .mobileNav
     display: none
+
+.mobileNav img
+    cursor: pointer
+    transition: transform 0.2s ease
+
+    &.active
+        transform: scale(1.1)
+
+.mobileSpheres
+    position: absolute
+    bottom: 70px
+    left: 50%
+    transform: translateX(-50%) scale(0.9)
+    opacity: 0
+    display: flex
+    gap: 10px
+    padding: 10px
+    background: white
+    border-radius: 20px
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1)
+    transition: all 0.3s ease-in-out
+    max-width: 70vw
+    overflow-x: hidden
+    white-space: nowrap
+    z-index: 1
+
+    &.show
+        opacity: 1
+        transform: translateX(-50%) scale(1)
+
+    &.scrollable
+        overflow-x: auto
+        padding-bottom: 5px
+
+.mobileSpheres::-webkit-scrollbar-track
+    padding-bottom: 10px
+
+.mobileSpheres::-webkit-scrollbar
+    height: 8px
+.mobileSpheres::-webkit-scrollbar-thumb
+    background-color: #b2b2b2 // Цвет "ползунка"
+    border-radius: 5px // Закругление
+
+.sphere
+    flex: 0 0 auto
+    padding: 10px
+    border-radius: 50%
+    background: white
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1)
+.fadeIn
+    opacity: 0
+    transform: scale(0.8)
+    animation: fadeInScale 0.3s forwards
+
+@keyframes fadeInScale
+    to
+        opacity: 1
+        transform: scale(1)
 
 @media (max-width: 572px)
     .desktopNav
@@ -54,10 +146,11 @@
         box-shadow: 0 -1px 5px rgba(0,0,0,0.1)
         border-radius: 30px
         padding: 5px
-        width: 90% // Делаем адаптивную ширину
-        max-width: 375px // Максимальная ширина, но не фиксированная
-        min-width: 280px // Минимальная ширина для узких экранов
+        width: 90%
+        max-width: 375px
+        min-width: 280px
         height: 64px
-        flex-wrap: wrap // Если элементы не помещаются, пусть переходят на новую строку
+        flex-wrap: wrap
+        z-index: 2
     .navBar
         display: none

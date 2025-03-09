@@ -9,10 +9,12 @@ export default function Greeting() {
   const handleCreateSphere = (newSphere) => {
     console.log("Создана новая сфера:", newSphere);
   };
+  const handleCreateCourse = (newCourse) => {
+    console.log("Создан курс", newCourse);
+  };
 
   const [openModal, setOpenModal] = useState(null);
   const [recentPages, setRecentPages] = useState([]);
-  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   useEffect(() => {
     const fetchRecentPages = async () => {
@@ -37,33 +39,15 @@ export default function Greeting() {
   return (
     <div className={s.container}>
       <div className={s.headerResponsive}>
-        <img
-          src="/images/icons/plusik.svg"
-          className={s.img}
-          alt=""
-          onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-        />
         <p className={s.studyOs}>
           Study <span>OS</span>
         </p>
         <img src="/images/icons/avatar.svg" className={s.avatar} alt="" />
       </div>
-
-      {mobileMenuOpen && (
-        <div className={s.mobileMenu}>
-          <div className={s.menuItem} onClick={() => setOpenModal("sphere")}>
-            Create Sphere
-          </div>
-          <div className={s.menuItem} onClick={() => setOpenModal("course")}>
-            Create Course
-          </div>
-          <div className={s.menuItem} onClick={() => setOpenModal("module")}>
-            Create Module
-          </div>
-        </div>
-      )}
-
-      <h1 className={s.text}>Good afternoon, Ivan!</h1>
+      <hr />
+      <h1 className={s.text}>
+        Good afternoon, <span>Ivan!</span>
+      </h1>
 
       <div className={s.recently}>
         <img src="/images/icons/clocks.svg" alt="" />
@@ -111,6 +95,7 @@ export default function Greeting() {
       <CreateCourseModal
         isOpen={openModal === "course"}
         onClose={() => setOpenModal(null)}
+        onCreate={handleCreateCourse}
       />
       <CreateModuleModal
         isOpen={openModal === "module"}

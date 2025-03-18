@@ -1,40 +1,91 @@
+import React, { useEffect, useState } from "react";
+import axios from "../../axios.js"; // проверьте правильность пути к вашему axios
 import s from "./Youtube.module.sass";
 
-export default function Youtube() {
+export default function Youtube({ moduleId }) {
+  const [videoData, setVideoData] = useState(null);
+  const [youtubeLink, setYoutubeLink] = useState(null);
+
+  // 1. Получаем данные модуля по moduleId, чтобы извлечь YouTube‑ссылку
+  useEffect(() => {
+    if (!moduleId) return;
+
+    const token = localStorage.getItem("access_token");
+    axios
+      .get(`/module/get_module/${moduleId}`, {
+        withCredentials: true,
+        headers: { Authorization: `Bearer ${token}` },
+      })
+      .then((res) => {
+        // Предположим, что бэкенд возвращает объект вида:
+        // { module: { link: "https://www.youtube.com/watch?v=GeulXZP_kZ8", ... } }
+        const link = res.data?.module?.link;
+        console.log("Полученная ссылка из модуля:", link);
+        if (link) {
+          setYoutubeLink(link);
+        }
+      })
+      .catch((err) => {
+        console.error("Ошибка при получении данных модуля:", err);
+      });
+  }, [moduleId]);
+
+  // 2. Как только youtubeLink получен, делаем запрос к oEmbed API YouTube
+  useEffect(() => {
+    if (!youtubeLink) return;
+    const oEmbedUrl = `https://www.youtube.com/oembed?url=${encodeURIComponent(
+      youtubeLink
+    )}&format=json`;
+    fetch(oEmbedUrl)
+      .then((response) => response.json())
+      .then((data) => {
+        console.log("oEmbed данные:", data);
+        setVideoData(data);
+      })
+      .catch((err) => {
+        console.error("Ошибка при загрузке oEmbed данных:", err);
+      });
+  }, [youtubeLink]);
+
+  if (!videoData) {
+    return <p>Loading video details...</p>;
+  }
+
   return (
     <div className={s.container}>
       <img
-        src="/images/iconsModule/youtubePreview.svg"
+        src={videoData.thumbnail_url}
         className={s.preview}
-        alt=""
+        alt="Video preview"
       />
       <div className={s.textContainer}>
         <div className={s.title}>
-          <p className={s.titleHead}>
-            The Birthday Party (Learn English with a Short Story)
-          </p>
+          <p className={s.titleHead}>{videoData.title}</p>
           <div className={s.icons}>
             <img
               src="/images/iconsModule/edit.svg"
               width={22}
               height={22}
-              alt=""
+              alt="edit"
             />
-            <img src="/images/iconsModule/settings.svg" alt="" />
+            <img src="/images/iconsModule/settings.svg" alt="settings" />
           </div>
         </div>
         <div className={s.titleDesc}>
-          <p className={s.textDesc}>
-            Learn English with another short story. This time it's a 300-word
-            story by Konstantine Drug, often used in literature classes, full of
-            vivid imagery and with an emotional twist. I read the story to you,
-            and then go through each line, explaining vocabulary and grammar.
-          </p>
-          <p className={s.time}>47:28</p>
+          {/* oEmbed не возвращает описание и длительность, можно указать заглушки */}
+          <p className={s.textDesc}>Description not available.</p>
+          <p className={s.time}>00:00</p>
         </div>
       </div>
       <div className={s.youtubeLink}>
-        <p className={s.linkText}>to Youtube</p>
+        <a
+          href={youtubeLink}
+          target="_blank"
+          rel="noopener noreferrer"
+          style={{ textDecoration: "none" }}
+        >
+          <p className={s.linkText}>to Youtube</p>
+        </a>
       </div>
     </div>
   );

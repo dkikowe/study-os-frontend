@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { useParams } from "react-router-dom";
 import s from "./Module.module.sass";
 import Header from "../../components/Header/Header";
 import Nav from "../../components/Nav/Nav";
@@ -9,6 +10,8 @@ import Cards from "../../components/Cards/Cards";
 import { Play, Book, Layers } from "lucide-react";
 
 export default function Module() {
+  // Извлекаем параметр moduleId из URL
+  const { id } = useParams();
   const [activeTab, setActiveTab] = useState("sessions");
 
   return (
@@ -16,13 +19,13 @@ export default function Module() {
       <Nav />
       <Header />
 
-      {/* Десктопная версия (ваш прежний код) */}
+      {/* Десктопная версия */}
       <div className={s.desktopVersion}>
         <div className={s.title}>
           <div className={s.titleText}>
             <div className={s.text}>
               <h4 className={s.titleHead}>
-                Party time | <span> Module 2</span>
+                Party time | <span> Module id:{id}</span>
               </h4>
               <div className={s.icons}>
                 <img src="/images/iconsModule/dotpoints.svg" alt="" />
@@ -44,11 +47,12 @@ export default function Module() {
               get-togethers.
             </p>
           </div>
-          <Youtube />
+          <Youtube moduleId={id} />
           <div className={s.sessions}>
             <Sessions />
-            <Video />
-            <Cards />
+            <Video moduleId={id} />
+            {/* Передаём moduleId в компонент Cards */}
+            <Cards moduleId={id} />
           </div>
           <div className={s.subtitleContainer}>
             <p className={s.subtitles}>Subtitles</p>
@@ -75,7 +79,7 @@ export default function Module() {
             className={activeTab === "sessions" ? s.activeTab : s.sessionButton}
             onClick={() => setActiveTab("sessions")}
           >
-            <Play size={30}></Play>
+            <Play size={30} />
             Sessions
           </button>
           <button
@@ -104,7 +108,7 @@ export default function Module() {
           <div className={s.titleTextMobile}>
             <div className={s.textMobile}>
               <h4 className={s.titleHeadMobile}>
-                Party time | <span> Module 2</span>
+                Party time | <span> Module {id}</span>
               </h4>
             </div>
           </div>
@@ -122,14 +126,14 @@ export default function Module() {
           {activeTab === "sessions" && <Sessions />}
           {activeTab === "study" && (
             <>
-              <Video />
+              <Video moduleId={id} />
               <div className={s.subtitleContainerMobile}>
                 <p className={s.subtitlesMobile}>Subtitles</p>
                 <p className={s.summaryMobile}>Module Summary</p>
               </div>
             </>
           )}
-          {activeTab === "cards" && <Cards />}
+          {activeTab === "cards" && <Cards moduleId={id} />}
         </div>
       </div>
     </div>

@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "../../axios";
 import s from "./Nav.module.sass";
+import { useNavigate } from "react-router-dom";
 import {
   Brain,
   Book,
@@ -52,6 +53,7 @@ const subjectIcons = {
 export default function Nav() {
   const [spheres, setSpheres] = useState([]);
   const [showSpheres, setShowSpheres] = useState(false);
+  const navigate = useNavigate();
 
   useEffect(() => {
     const fetchSpheres = async () => {
@@ -71,6 +73,14 @@ export default function Nav() {
     fetchSpheres();
   }, []);
 
+  const handleNavigateSphere = (sphereId) => {
+    navigate(`/sphere/${sphereId}`);
+  };
+
+  const handleHomeNavigate = () => {
+    navigate("/home");
+  };
+
   return (
     <div className="body">
       {/* Десктоп навбар (ОСТАВИЛ БЕЗ ИЗМЕНЕНИЙ) */}
@@ -79,7 +89,12 @@ export default function Nav() {
         <div className={s.navBar}>
           <img src="/images/icons/avatar.svg" className={s.avatar} alt="" />
           <img src="/images/icons/Line.svg" className={s.line} alt="" />
-          <img src="/images/icons/Home.svg" className={s.home} alt="" />
+          <img
+            src="/images/icons/Home.svg"
+            className={s.home}
+            alt=""
+            onClick={handleHomeNavigate}
+          />
 
           {/* Контейнер для скролла, если сфер больше 5 */}
           <div className={s.spheresContainer}>
@@ -92,7 +107,10 @@ export default function Nav() {
               return IconComp ? (
                 <div key={sphere.id} className={s.spheres}>
                   <div className={s.iconWrapper}>
-                    <IconComp size={30} />
+                    <IconComp
+                      size={30}
+                      onClick={() => handleNavigateSphere(sphere.id)}
+                    />
                   </div>
                 </div>
               ) : null;
@@ -135,7 +153,10 @@ export default function Nav() {
 
           return IconComp ? (
             <div key={sphere.id} className={s.sphere}>
-              <IconComp size={30} />
+              <IconComp
+                size={30}
+                onClick={() => handleNavigateSphere(sphere.id)}
+              />
             </div>
           ) : null;
         })}

@@ -3,46 +3,57 @@
     align-items: center
     background: white
     padding: 10px 16px
-    border-radius: 10px
-    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1)
+    border-radius: 10px 10px 0 0
     width: 540px
     height: 40px
     margin-left: 40px
-
-.containerCard
-    display: flex
-    align-items: center
-    flex-direction: row
-    gap: 10px
+    z-index: 2
     position: relative
+    white-space: nowrap
 
-.cards
-    border-radius: 10px 10px 0 0
-    width: 48px
-    height: 18px
-    background: #656565
-    display: flex
-    justify-content: center
-    align-items: center
-    position: absolute
-    font-family: "Anaheim", sans-serif
-    font-weight: 700
-    font-size: 15px
-    line-height: 147%
-    letter-spacing: -0.01em
-    text-align: center
-    color: #ffc86f
-    border: none
-    top: -28px
+    .sessionsScroll
+        display: flex
+        gap: 8px
+        overflow-x: scroll // только горизонтальный скролл
+        max-width: 300px // например, чтобы ограничить ширину
+        white-space: nowrap
+        &::-webkit-scrollbar
+            height: 6px // меньшая высота полосы прокрутки
 
+        &::-webkit-scrollbar-thumb
+
+            transition: none // отключаем любые переходы при наведении
+
+    .topBar
+        display: flex
+        gap: 8px
+        align-items: center
+        .cards
+            border-radius: 10px 10px 0 0
+            width: 48px
+            height: 18px
+            background: #656565
+            display: flex
+            justify-content: center
+            align-items: center
+            position: absolute
+            font-family: "Anaheim", sans-serif
+            font-weight: 700
+            font-size: 15px
+            line-height: 147%
+            letter-spacing: -0.01em
+            text-align: center
+            color: #ffc86f
+            border: none
+            top: -18px
 .close
     border-radius: 10px 10px 0 0
     border: none
     width: 32px
     height: 18px
     position: absolute
-    top: -28px
-    right: -350px
+    top: -18px
+    right: 8px
     background: #fff
     color: #b0b0b0
     font-size: 25px
@@ -51,6 +62,35 @@
     justify-content: center
     align-items: center
 
+.containerCard
+    display: flex
+    align-items: center
+    flex-direction: row
+    gap: 10px
+
+.topicName
+    font-family: "Anaheim", sans-serif
+    font-weight: 700
+    letter-spacing: -0.01em
+    text-align: right
+    color: #656565
+    font-size: 16px
+    letter-spacing: -0.01em
+    margin-left: 20px
+    color: #656565
+
+.activeSession
+    font-family: "Anaheim", sans-serif
+    font-weight: 700
+    font-size: 16px
+    letter-spacing: -0.01em
+    text-align: center
+    color: #f4f4f4
+    background: #918e8e
+    border-radius: 2px
+    width: 20px
+    height: 20px
+
 .label
     font-family: "Anaheim", sans-serif
     font-weight: 700
@@ -58,6 +98,7 @@
     letter-spacing: -0.01em
     text-align: center
     color: #918e8e
+    margin-right: 20px
 
 .buttonCard
     background: #e0e0e0
@@ -95,9 +136,13 @@
     background: white
     padding: 16px
     border-radius: 10px
-    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1)
     width: 540px
     margin-left: 40px
+    position: absolute
+    margin-bottom: 40px
+    z-index: 1
+    background: #fff
+    top: 330px
 
 .header
     display: flex
@@ -112,40 +157,54 @@
     margin-top: 10px
 
 .card
-    background: #f9f9f9
+
     border-radius: 8px
     padding: 12px
-    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.05)
+    box-shadow: inset 0 0 10px 0 rgba(0, 0, 0, 0.05)
+    background: #fff
 
 .cardHeader
     display: flex
     align-items: center
-    margin-bottom: 6px
 
+    display: flex
+    justify-content: space-around
+    gap: 350px
+    align-items: center
+    .cardIcons
+        gap: 20px
+        display: flex
+.questionBlock
+    display: flex
+    flex-direction: row
+    gap: 10px
 .cardNumber
-    font-weight: bold
+    font-family: "Anaheim", sans-serif
+    font-weight: 700
     font-size: 16px
-    color: #656565
-    background: #e0e0e0
-    padding: 6px 10px
-    border-radius: 6px
+    letter-spacing: -0.01em
+    text-align: center
+    color: #b8b8b8
 
 .cardContent
     display: flex
     flex-direction: column
     gap: 6px
 
-.question, .answer
-    background: white
-    padding: 10px
-    border-radius: 6px
-    box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.1)
-
 .question strong, .answer strong
-    font-size: 14px
+    font-family: "Anaheim", sans-serif
+    font-weight: 700
+    font-size: 16px
+    line-height: 137%
+    letter-spacing: -0.01em
     color: #656565
+    margin-left: 20px
 
 .question p, .answer p
-    margin: 0
-    font-size: 14px
-    color: #333
+    font-family: "Anaheim", sans-serif
+    font-weight: 600
+    font-size: 15px
+    line-height: 147%
+    letter-spacing: -0.01em
+    text-align: justify
+    color: #918e8e

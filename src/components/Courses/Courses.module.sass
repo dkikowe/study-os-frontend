@@ -1,0 +1,127 @@
+.container
+
+    display: flex
+    justify-content: center
+    align-items: center
+    position: absolute
+    gap: 10px
+    flex-direction: column
+    top: 35%
+    left: 20%
+    .courseContainer
+        display: flex
+        gap: 5px
+        flex-direction: column
+        width: 50vw
+        .module
+            border-radius: 10px
+            width: 248px
+            height: 198px
+        .headName
+            display: flex
+            justify-content: space-between
+            align-items: center
+            gap: 400px
+        .icon
+            display: flex
+            justify-content: center
+            align-items: center
+            gap: 10px
+        .openCourse
+            border-radius: 44px
+            width: 144px
+            height: 34px
+            background: #6f74ff
+            font-family: "Anaheim", sans-serif
+            font-weight: 700
+            font-size: 20px
+            line-height: 110%
+            letter-spacing: -0.01em
+            color: #fff
+            border: none
+            display: flex
+            justify-content: center
+            align-items: center
+
+    .courseName
+        font-family: "Anaheim", sans-serif
+        font-weight: 700
+        font-size: 32px
+        line-height: 69%
+        letter-spacing: -0.01em
+        color: #656565
+        margin-left: 50px
+        display: flex
+        justify-content: center
+        align-items: center
+        span
+            font-weight: 600
+            font-family: "Anaheim", sans-serif
+            font-size: 32px
+            line-height: 69%
+            letter-spacing: -0.01em
+            color: #656565
+            margin-left: 5px
+
+.moduleCards
+    display: flex
+    justify-content: flex-start
+    align-items: center
+    gap: 5px
+    margin: 20px
+
+    .moduleCard
+        border-radius: 10px
+        width: 248px
+        height: 188px
+        backdrop-filter: blur(50px)
+        box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.03)
+        background: #fff
+        display: flex
+        justify-content: space-around
+        align-items: flex-start
+        flex-direction: column
+        transition: transform 0.2s ease-in-out
+
+        &:hover
+            transform: scale(1.05)
+            cursor: pointer
+        img
+            object-fit: cover
+
+        .text
+            display: flex
+            flex-direction: column
+            justify-content: center
+            align-items: flex-start
+            text-align: left
+            margin-left: 10px
+            gap: 10px
+
+            .moduleName
+                font-family: "Anaheim", sans-serif
+                font-weight: 700
+                font-size: 19px
+                line-height: 116%
+                letter-spacing: -0.01em
+                color: #656565
+            .sessionsQuantity
+                display: flex
+                justify-content: center
+                align-items: center
+                gap: 5px
+                img
+                    width: 8px
+                    height: 9px
+                p
+                    font-family: "Anaheim", sans-serif
+                    font-weight: 700
+                    font-size: 12px
+                    line-height: 108%
+                    letter-spacing: -0.02em
+                    color: #b8b8b8
+        img
+            border-radius: 5px
+            width: 238px
+            height: 133px
+            align-self: center

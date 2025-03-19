@@ -3,7 +3,7 @@ import YouTube from "react-youtube";
 import axios from "../../axios.js"; // импорт вашего настроенного axios
 import s from "./Video.module.sass";
 
-export default function Video({ moduleId }) {
+export default function VideoMobile({ moduleId }) {
   const [showOverlay, setShowOverlay] = useState(false);
   const [startTime, setStartTime] = useState(0);
   const [videoId, setVideoId] = useState(null); // храним идентификатор YouTube-видео
@@ -96,8 +96,8 @@ export default function Video({ moduleId }) {
 
   // 4. Настройки плеера
   const videoOptions = {
-    width: "660",
-    height: "400",
+    width: "380",
+    height: "230",
     playerVars: {
       autoplay: 0,
     },

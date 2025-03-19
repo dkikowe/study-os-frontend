@@ -1,70 +1,71 @@
+import React, { useEffect, useState } from "react";
 import s from "./Sessions.module.sass";
+import axios from "../../axios"; // проверьте правильность пути к axios
 
-export default function Sessions() {
-  const sessionsData = [
-    {
-      id: 1,
-      topic: "/*Topic name*/",
-      startTime: "3:42",
-      endTime: "12:52",
-      cardsCount: 15,
-      iconSrc: "/images/iconsModule/refresh.svg",
-    },
-    {
-      id: 2,
-      topic: "/*Topic name*/",
-      startTime: "3:42",
-      endTime: "12:52",
-      cardsCount: 10,
-      iconSrc: "/images/iconsModule/syncIcon.svg",
-    },
-    {
-      id: 3,
-      topic: "/*Topic name*/",
-      startTime: "3:42",
-      endTime: "12:52",
-      cardsCount: 12,
-      iconSrc: "/images/iconsModule/pause.svg", // Тут исправь путь, если название другое
-    },
-  ];
+export default function Sessions({ moduleId }) {
+  const [topics, setTopics] = useState([]);
+
+  useEffect(() => {
+    if (!moduleId) return;
+    const token = localStorage.getItem("access_token");
+    axios
+      .get(`/topic/get_topics/${moduleId}`, {
+        withCredentials: true,
+        headers: { Authorization: `Bearer ${token}` },
+      })
+      .then((response) => {
+        const allTopics = response.data.topics || [];
+        setTopics(allTopics);
+      })
+      .catch((err) => {
+        console.error("Ошибка при загрузке топиков:", err);
+      });
+  }, [moduleId]);
+
+  // Общее количество сессий равно количеству топиков
+  const totalSessions = topics.length;
 
   return (
     <div className={s.container}>
       <p className={s.sessionsTitle}>Sessions</p>
       <div className={s.sessions}>
-        {sessionsData.map((session) => (
-          <div key={session.id} className={s.cardContainer}>
+        {topics.map((topic, index) => (
+          <div key={topic.id} className={s.cardContainer}>
             <div className={s.sessionCard}>
               <div className={s.sessionSide}>
                 <div className={s.syncIcon}>
-                  <img src={session.iconSrc} alt="Session Icon" />
+                  {/* Здесь можно задать иконку для сессии */}
+                  <img
+                    src="/images/iconsModule/refresh.svg"
+                    alt="Session Icon"
+                  />
                 </div>
               </div>
-
               <div className={s.sessionContent}>
                 <div className={s.imageWrapper}>
+                  {/* Превью можно оставить статичным или заменить на динамический, если потребуется */}
                   <img
                     src="/images/iconsModule/youtubePreview.svg"
                     alt="Session Preview"
                     className={s.sessionImage}
                   />
                   <div className={s.overlay}>
-                    <span className={s.sessionNumber}>{session.id}</span>
-                    <span className={s.sessionTitle}>{session.topic}</span>
+                    <span className={s.sessionNumber}>{index + 1}</span>
+                    {/* Используем topic.name из API вместо заглушки */}
+                    <span className={s.sessionTitle}>{topic.name}</span>
                     <div className={s.times}>
-                      <p className={s.cardCount}>{session.cardsCount} cards</p>
+                      {/* Количество карточек или сессий — общее число топиков */}
+                      <p className={s.cardCount}>{totalSessions} cards</p>
                       <div className={s.timeCodes}>
-                        <span>
-                          {session.startTime} - <span>{session.endTime}</span>
-                        </span>
+                        {/* Если у топика нет данных по времени, можно оставить заглушку */}
+                        <span>--:-- - --:--</span>
                       </div>
                     </div>
                   </div>
                 </div>
               </div>
             </div>
-
-            <div className={s.buttons}>
+            <div key={topic.id} className={s.buttons}>
               <button className={s.toCards}>to cards</button>
               <button className={s.toTimeCode}>to time-code</button>
             </div>

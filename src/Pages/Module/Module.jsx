@@ -8,6 +8,7 @@ import Sessions from "../../components/Sessions/Sessions";
 import Video from "../../components/Video/Video";
 import Cards from "../../components/Cards/Cards";
 import { Play, Book, Layers } from "lucide-react";
+import VideoMobile from "../../components/Video/VideoMobile";
 
 export default function Module() {
   // Извлекаем параметр moduleId из URL
@@ -49,14 +50,10 @@ export default function Module() {
           </div>
           <Youtube moduleId={id} />
           <div className={s.sessions}>
-            <Sessions />
+            <Sessions moduleId={id} />
             <Video moduleId={id} />
             {/* Передаём moduleId в компонент Cards */}
             <Cards moduleId={id} />
-          </div>
-          <div className={s.subtitleContainer}>
-            <p className={s.subtitles}>Subtitles</p>
-            <p className={s.summary}>Module Summary</p>
           </div>
         </div>
       </div>
@@ -123,14 +120,10 @@ export default function Module() {
         </div>
 
         <div className={s.tabContent}>
-          {activeTab === "sessions" && <Sessions />}
+          {activeTab === "sessions" && <Sessions moduleId={id} />}
           {activeTab === "study" && (
             <>
-              <Video moduleId={id} />
-              <div className={s.subtitleContainerMobile}>
-                <p className={s.subtitlesMobile}>Subtitles</p>
-                <p className={s.summaryMobile}>Module Summary</p>
-              </div>
+              <VideoMobile moduleId={id} />
             </>
           )}
           {activeTab === "cards" && <Cards moduleId={id} />}

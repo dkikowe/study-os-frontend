@@ -125,7 +125,12 @@ export default function Nav() {
 
       {/* Мобильный навбар */}
       <div className={s.mobileNav}>
-        <img src="./images/icons/homeMobile.svg" alt="" />
+        <img
+          className={s.homeMobile}
+          src="/images/icons/homeMobile.svg"
+          onClick={handleHomeNavigate}
+          alt=""
+        />
         <img
           src={
             !showSpheres

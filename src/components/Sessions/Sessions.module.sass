@@ -1,5 +1,7 @@
 .container
     position: relative
+    max-height: 500px
+    overflow-y: scroll
     .sessionsTitle
         font-family: "Anaheim", sans-serif
         font-weight: 600
@@ -123,6 +125,12 @@
     text-align: left
     color: #fff
 
+    display: inline-block // или block/flex, но важно, чтобы ширина была фиксированной или max-width
+    width: 200px // укажите нужную ширину
+    white-space: nowrap // не переносить текст
+    overflow: hidden // скрывать то, что не влезает
+    text-overflow: ellipsis
+
 .times
     display: flex
     gap: 30px
@@ -182,6 +190,8 @@
     color: #fff
 
 @media  (max-width: 768px)
+    .container
+        max-height: 450px
     .sessionsTitle
         margin-left: 20px !important
     .sessions

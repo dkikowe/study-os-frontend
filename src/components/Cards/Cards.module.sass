@@ -62,6 +62,22 @@
     justify-content: center
     align-items: center
 
+.open
+    border-radius: 10px 10px 0 0
+    border: none
+    width: 32px
+    height: 18px
+    position: absolute
+    top: -18px
+    right: 8px
+    background: #fff
+    color: #b0b0b0
+    font-size: 25px
+    font-weight: bold
+    display: flex
+    justify-content: center
+    align-items: flex-start
+
 .containerCard
     display: flex
     align-items: center
@@ -80,16 +96,24 @@
     color: #656565
 
 .activeSession
+    background: #918E8E
+    border: none
+    padding: 6px 10px
+    border-radius: 6px
+    cursor: pointer
+    transition: 0.2s
     font-family: "Anaheim", sans-serif
     font-weight: 700
     font-size: 16px
     letter-spacing: -0.01em
     text-align: center
-    color: #f4f4f4
-    background: #918e8e
-    border-radius: 2px
+    color: #ffffff
     width: 20px
     height: 20px
+    display: flex
+    justify-content: center
+    align-items: center
+    flex-direction: row
 
 .label
     font-family: "Anaheim", sans-serif
@@ -122,13 +146,6 @@
 
     &:hover
         background: #d6d6d6
-@media (max-width: 768px)
-    .cardNumbers
-        width: 380px
-        margin: 0
-        margin-top: 20px
-    .close
-        right: -200px
 
 .cardsContainer
     display: flex
@@ -155,6 +172,20 @@
     flex-direction: column
     gap: 12px
     margin-top: 10px
+    overflow-y: scroll
+    max-height: 550px
+    animation: fadeIn 0.3s ease-in forwards
+
+@keyframes fadeIn
+    from
+        opacity: 0
+
+    to
+        opacity: 1
+
+.cardsList::-webkit-scrollbar-thumb
+    background: #ccc
+    border-radius: 4px
 
 .card
 
@@ -208,3 +239,21 @@
     letter-spacing: -0.01em
     text-align: justify
     color: #918e8e
+
+@media (max-width: 768px)
+    .cardNumbers
+        width: 380px
+        margin: 0
+        margin-top: 20px
+        margin-bottom: 500px !important
+    .cardsContainer
+        width: 380px
+        margin: 0
+        top: 320px
+        height: 400px
+    .cardHeader
+        gap: 180px
+    .line
+        width: 320px
+    .cardList
+        max-height: 150px

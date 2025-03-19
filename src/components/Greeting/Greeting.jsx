@@ -18,10 +18,10 @@ export default function Greeting() {
 
   useEffect(() => {
     const fetchRecentPages = async () => {
-      const token = localStorage.getItem("access_token");
+      const token = localStorage.getItem("token");
 
       try {
-        const response = await axios.get("/last_recently", {
+        const response = await axios.post("/last_recently", {
           withCredentials: true,
           headers: {
             Authorization: `Bearer ${token}`,

@@ -14,7 +14,7 @@
     .sessionsScroll
         display: flex
         gap: 8px
-        overflow-x: scroll // только горизонтальный скролл
+        overflow: scroll// только горизонтальный скролл
         max-width: 300px // например, чтобы ограничить ширину
         white-space: nowrap
         &::-webkit-scrollbar
@@ -155,11 +155,16 @@
     border-radius: 10px
     width: 540px
     margin-left: 40px
-    position: absolute
-    margin-bottom: 40px
+
+    margin-bottom: 50px
     z-index: 1
     background: #fff
-    top: 330px
+    top: -10px
+    position: relative
+    max-height: 550px // Ограничение по высоте
+    overflow-y: auto // Добавляем вертикальный скролл, если содержимого больше 550px
+
+    z-index: 1
 
 .header
     display: flex
@@ -172,7 +177,7 @@
     flex-direction: column
     gap: 12px
     margin-top: 10px
-    overflow-y: scroll
+    overflow-y: visible
     max-height: 550px
     animation: fadeIn 0.3s ease-in forwards
 

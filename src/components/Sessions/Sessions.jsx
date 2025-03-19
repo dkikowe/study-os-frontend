@@ -1,13 +1,35 @@
 import React, { useEffect, useState } from "react";
-import s from "./Sessions.module.sass";
-import axios from "../../axios"; // проверьте правильность пути к axios
+import s from "./Sessions.module.sass"; // ваш scss-модуль
+import axios from "../../axios"; // проверьте корректность пути к axios
 
 export default function Sessions({ moduleId }) {
   const [topics, setTopics] = useState([]);
+  const [youtubeLink, setYoutubeLink] = useState(null);
+  const [videoData, setVideoData] = useState(null);
 
   useEffect(() => {
     if (!moduleId) return;
     const token = localStorage.getItem("access_token");
+
+    // 1) Загружаем сам модуль, чтобы получить ссылку на YouTube
+    axios
+      .get(`/module/get_module/${moduleId}`, {
+        withCredentials: true,
+        headers: { Authorization: `Bearer ${token}` },
+      })
+      .then((res) => {
+        // Предположим, что бэкенд возвращает объект:
+        // { module: { link: "https://www.youtube.com/watch?v=xxx", ... } }
+        const link = res.data?.module?.link;
+        if (link) {
+          setYoutubeLink(link);
+        }
+      })
+      .catch((err) => {
+        console.error("Ошибка при получении данных модуля:", err);
+      });
+
+    // 2) Загружаем топики (сессии)
     axios
       .get(`/topic/get_topics/${moduleId}`, {
         withCredentials: true,
@@ -22,11 +44,37 @@ export default function Sessions({ moduleId }) {
       });
   }, [moduleId]);
 
-  // Общее количество сессий равно количеству топиков
+  // 3) Когда youtubeLink появился, запрашиваем данные о видео через oEmbed
+  useEffect(() => {
+    if (!youtubeLink) return;
+
+    const oEmbedUrl = `https://www.youtube.com/oembed?url=${encodeURIComponent(
+      youtubeLink
+    )}&format=json`;
+
+    fetch(oEmbedUrl)
+      .then((response) => response.json())
+      .then((data) => {
+        setVideoData(data);
+      })
+      .catch((err) => {
+        console.error("Ошибка при загрузке oEmbed данных:", err);
+      });
+  }, [youtubeLink]);
+
+  // Если oEmbed ещё не загрузился, показываем заглушку
+  if (!videoData) {
+    return <p>Loading video details...</p>;
+  }
+
+  // Посчитаем общее число топиков
   const totalSessions = topics.length;
 
   return (
     <div className={s.container}>
+      {/* --- Блок с YouTube-превью из oEmbed --- */}
+
+      {/* --- Блок с сессиями (топиками) --- */}
       <p className={s.sessionsTitle}>Sessions</p>
       <div className={s.sessions}>
         {topics.map((topic, index) => (
@@ -34,7 +82,6 @@ export default function Sessions({ moduleId }) {
             <div className={s.sessionCard}>
               <div className={s.sessionSide}>
                 <div className={s.syncIcon}>
-                  {/* Здесь можно задать иконку для сессии */}
                   <img
                     src="/images/iconsModule/refresh.svg"
                     alt="Session Icon"
@@ -43,21 +90,19 @@ export default function Sessions({ moduleId }) {
               </div>
               <div className={s.sessionContent}>
                 <div className={s.imageWrapper}>
-                  {/* Превью можно оставить статичным или заменить на динамический, если потребуется */}
+                  {/* Если у каждого топика тоже есть своя YouTube‑ссылка,
+                      можно сделать аналогичный oEmbed-запрос или вставить превью */}
                   <img
-                    src="/images/iconsModule/youtubePreview.svg"
-                    alt="Session Preview"
-                    className={s.sessionImage}
+                    src={videoData.thumbnail_url}
+                    className={s.preview}
+                    alt="Video preview"
                   />
                   <div className={s.overlay}>
                     <span className={s.sessionNumber}>{index + 1}</span>
-                    {/* Используем topic.name из API вместо заглушки */}
                     <span className={s.sessionTitle}>{topic.name}</span>
                     <div className={s.times}>
-                      {/* Количество карточек или сессий — общее число топиков */}
                       <p className={s.cardCount}>{totalSessions} cards</p>
                       <div className={s.timeCodes}>
-                        {/* Если у топика нет данных по времени, можно оставить заглушку */}
                         <span>--:-- - --:--</span>
                       </div>
                     </div>
@@ -65,7 +110,7 @@ export default function Sessions({ moduleId }) {
                 </div>
               </div>
             </div>
-            <div key={topic.id} className={s.buttons}>
+            <div className={s.buttons}>
               <button className={s.toCards}>to cards</button>
               <button className={s.toTimeCode}>to time-code</button>
             </div>

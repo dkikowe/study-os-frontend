@@ -1,0 +1,387 @@
+
+.container
+    width: 100vw
+    .mobileContainer
+        display: none
+        .headerResponsive
+            display: none
+
+    .dekstopVersion
+        display: flex
+        justify-content: center
+
+        .statusRow
+            border-radius: 5px
+            padding: 3px
+            width: 966px
+            height: 20px
+            background: #fff
+            display: flex
+            justify-content: space-between
+            .statusText
+                font-family: "Anaheim", sans-serif
+                font-weight: 600
+                font-size: 20px
+                line-height: 110%
+                letter-spacing: -0.01em
+                text-align: right
+                color: #b8b8b8
+        .ai
+            margin-top: 100px
+            width: 440px
+            height: 429px
+        .sessionContainer
+            margin-right: 30px
+            border-radius: 10px
+            padding: 10px 20px
+            width: 1006px
+            margin-top: 100px
+            background: #fff
+            display: flex
+            flex-direction: column
+            gap: 10px
+
+            .card
+
+                .answerBlock
+                    display: flex
+                    flex-direction: row
+                    margin-bottom: 20px
+                    .buttons
+                        display: flex
+                        flex-direction: column
+                        justify-content: center
+                        align-items: center
+                        .checkButton
+                            width: 90px
+                            height: 137px
+                            display: flex
+                            background: #E5E5E5
+                            justify-content: center
+                            align-items: end
+                            border-radius: 0 15px 0 0
+                            &:hover
+                                cursor: pointer
+                            svg
+                                margin-bottom: 20px
+                        img
+                            border-radius: 0 0 15px 0
+                            &:hover
+                                cursor: pointer
+
+                    textarea
+                        width: 840px
+                        height: 187px
+                        border: 1px solid #e5e5e5
+                        border-radius: 15px 0 0 15px
+                        font-family: "Anaheim", sans-serif
+                        font-weight: 500
+                        font-size: 16px
+                        line-height: 1.4
+                        letter-spacing: -0.01em
+                        padding: 10px
+                        color: #656565
+                        resize: none
+                        &:focus
+                            outline: none
+                        /* Убираем возможность растягивать поле (по желанию) */
+
+                        /* Стили для placeholder */
+                        &::placeholder
+                            font-family: "Anaheim", sans-serif
+                            font-weight: 500
+                            font-size: 16px
+                            line-height: 1.4
+                            letter-spacing: -0.01em
+                            color: #b0b0b0
+            .question
+                display: flex
+                flex-direction: column
+                margin: 5px
+                gap: 10px
+                h3
+                    font-family: "Anaheim", sans-serif
+                    font-weight: 700
+                    font-size: 20px
+                    line-height: 110%
+                    text-align: left
+                    color: #656565
+                p
+                    font-family: "Anaheim", sans-serif
+                    font-weight: 600
+                    font-size: 16px
+                    line-height: 137%
+                    color: #656565
+                    margin-bottom: 20px
+            .cardText
+                font-family: "Anaheim", sans-serif
+                font-weight: 700
+                font-size: 24px
+                line-height: 92%
+                text-align: left
+                color: #656565
+                margin-bottom: 15px
+            img
+                stroke-width: 2px
+                stroke: #e5e5e5
+
+.preview
+    border-radius: 5px
+    width: 437px
+    height: 291px
+    object-fit: cover
+
+.title
+    position: absolute
+    top: 50px
+    left: 8%
+
+.titleText
+    .text
+        display: flex
+        flex-direction: row
+        justify-content: flex-start
+        align-items: center
+        text-align: left
+        gap: 250px
+        .icons
+            display: flex
+            flex-direction: row
+            justify-content: center
+            align-items: center
+            gap: 20px
+        .titleHead
+            font-family: "Anaheim", sans-serif
+            font-weight: 700
+            font-size: 40px
+            line-height: 55%
+            letter-spacing: -0.01em
+            color: #656565
+            padding-left: 120px
+            text-align: left
+        span
+            font-weight: 600
+            font-family: "Anaheim", sans-serif
+            font-size: 40px
+            line-height: 55%
+            letter-spacing: -0.01em
+            color: #656565
+.statusIcon
+    &:hover
+        cursor: pointer
+
+@media (max-width: 768px)
+    .mobileStatusBox
+        width: 30px
+        height: 30px
+        border-radius: 5px
+        font-family: "Anaheim", sans-serif
+        font-weight: 600
+        font-size: 24px
+        color: #fff
+        display: flex
+        align-items: center
+        justify-content: center
+        margin-right: 5px
+        cursor: pointer
+    .mobileStatusRow
+        display: flex
+        justify-content: center
+        align-items: center
+        width: 100%
+        margin-bottom: 10px
+        flex-direction: row
+
+        .mobileRow
+            display: flex
+            gap: 5px
+            max-width: 100vw
+            align-self: center
+            flex-direction: row
+
+            .mobileStatusIcon
+                width: 24px
+                height: 24px
+                &:hover
+                    cursor: pointer
+
+    // Цвета по статусу
+    .correct
+        background: #b4dd9d // зелёный
+
+    .incorrect
+        background-color: #f2abab // красный
+
+    .notAnswered
+        background-color: #bdbdbd // серый
+
+    .container
+        width: 100vw
+
+        .dekstopVersion
+            display: none
+
+        .mobileContainer
+            display: flex !important
+            flex-direction: column
+            justify-content: center
+            align-items: center
+            background: #f5f5f5
+            padding: 0px
+
+            hr
+                margin-bottom: 20px
+
+            .mobileTitle
+                width: 100%
+                text-align: center
+                margin-bottom: 20px
+
+                .mobileTitleText
+                .mobileText
+                    display: flex
+                    flex-direction: column
+                    align-items: center
+                    gap: 10px
+
+                    .mobileTitleHead
+                        font-family: "Anaheim", sans-serif
+                        font-weight: 700
+                        font-size: 24px
+                        line-height: 110%
+                        letter-spacing: -0.01em
+                        color: #656565
+                        margin: 0
+                        width: 95vw
+                        span
+                            font-weight: 600
+                            font-family: "Anaheim", sans-serif
+                            font-size: 24px
+                            line-height: 55%
+                            letter-spacing: -0.01em
+                            color: #656565
+
+            .headerResponsive
+                margin-top: 20px
+                display: flex !important
+                flex-direction: row !important
+                justify-content: center !important
+                align-items: center !important
+                width: 95%
+                gap: 60px !important
+                z-index: 999999
+
+                .icons
+                    width: 50px
+                    height: 50px
+
+                .studyOs
+                    font-family: "Anaheim", sans-serif
+                    font-weight: 800
+                    font-size: 40px
+                    color: #656565
+                    display: flex !important
+
+                    span
+                        color: #6f74ff
+
+            .mobileSessionContainer
+                width: 90%
+                background: #fff
+                border-radius: 10px
+                padding: 10px
+                display: flex
+                flex-direction: column
+                gap: 10px
+                margin-bottom: 20px
+
+                .mobileStatusText
+                    font-family: "Anaheim", sans-serif
+                    font-weight: 600
+                    font-size: 18px
+                    color: #b8b8b8
+
+                .mobileCardText
+                    font-family: "Anaheim", sans-serif
+                    font-weight: 700
+                    font-size: 20px
+                    color: #656565
+                    margin-bottom: 15px
+
+                .mobileSvgLine
+                    width: 100%
+                    margin-bottom: 10px
+
+                .mobileVideoPreview
+                    width: 100%
+                    margin-bottom: 10px
+
+                .mobilePreview
+                    width: 100%
+                    height: auto
+                    border-radius: 5px
+                    object-fit: cover
+
+                .mobileCard
+                    background: #fff
+                    border-radius: 10px
+                    padding: 10px
+
+                .mobileQuestion
+                    margin-bottom: 10px
+                    h3
+                        font-family: "Anaheim", sans-serif
+                        font-weight: 700
+                        font-size: 20px
+                        color: #656565
+                        margin-bottom: 5px
+                    p
+                        font-family: "Anaheim", sans-serif
+                        font-weight: 600
+                        font-size: 16px
+                        color: #656565
+
+                .mobileAnswerBlock
+                    display: flex
+                    flex-direction: row
+
+                    .mobileTextarea
+                        width: 100%
+                        height: 120px
+                        border: 1px solid #e5e5e5
+                        border-radius: 15px 0 0 15px
+                        font-family: "Anaheim", sans-serif
+                        font-size: 16px
+                        padding: 10px
+                        color: #656565
+                        resize: none
+                        &:focus
+                            outline: none
+                        &::placeholder
+                            font-family: "Anaheim", sans-serif
+                            font-size: 16px
+                            color: #b0b0b0
+
+                    .mobileButtons
+                        display: flex
+                        flex-direction: column
+
+                        align-items: center
+
+                    .mobileCheckButton
+                        display: flex
+                        justify-content: center
+                        align-items: center
+                        background: #E5E5E5
+                        border-radius: 0 15px 0 0
+                        width: 70px
+                        height: 80px
+                        &:hover
+                            cursor: pointer
+
+                    .mobileNextButton
+                        width: 70px
+                        height: 40px
+                        border-radius: 0 0 15px 0
+                        &:hover
+                            cursor: pointer

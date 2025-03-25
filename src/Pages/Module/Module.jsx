@@ -7,13 +7,13 @@ import Youtube from "../../components/Youtube/Youtube";
 import Sessions from "../../components/Sessions/Sessions";
 import Video from "../../components/Video/Video";
 import Cards from "../../components/Cards/Cards";
-import { Play, Book, Layers } from "lucide-react";
+import { Play, Book } from "lucide-react";
 import VideoMobile from "../../components/Video/VideoMobile";
 
 export default function Module() {
-  // Извлекаем параметр moduleId из URL
   const { id } = useParams();
   const [activeTab, setActiveTab] = useState("sessions");
+  const [selectedTopic, setSelectedTopic] = useState(null);
 
   return (
     <div className={s.container}>
@@ -50,10 +50,14 @@ export default function Module() {
           </div>
           <Youtube moduleId={id} />
           <div className={s.sessions}>
-            <Sessions moduleId={id} />
+            {/* Передаём колбэки для смены таба и выбора топика */}
+            <Sessions
+              moduleId={id}
+              onSelectTopic={setSelectedTopic}
+              changeTab={setActiveTab}
+            />
             <Video moduleId={id} />
-            {/* Передаём moduleId в компонент Cards */}
-            <Cards moduleId={id} />
+            <Cards moduleId={id} selectedTopic={selectedTopic} />
           </div>
         </div>
       </div>
@@ -71,6 +75,7 @@ export default function Module() {
             alt=""
           />
         </div>
+        <hr />
         <div className={s.mobileTabs}>
           <button
             className={activeTab === "sessions" ? s.activeTab : s.sessionButton}
@@ -120,13 +125,17 @@ export default function Module() {
         </div>
 
         <div className={s.tabContent}>
-          {activeTab === "sessions" && <Sessions moduleId={id} />}
-          {activeTab === "study" && (
-            <>
-              <VideoMobile moduleId={id} />
-            </>
+          {activeTab === "sessions" && (
+            <Sessions
+              moduleId={id}
+              onSelectTopic={setSelectedTopic}
+              changeTab={setActiveTab}
+            />
           )}
-          {activeTab === "cards" && <Cards moduleId={id} />}
+          {activeTab === "study" && <VideoMobile moduleId={id} />}
+          {activeTab === "cards" && (
+            <Cards moduleId={id} selectedTopic={selectedTopic} />
+          )}
         </div>
       </div>
     </div>

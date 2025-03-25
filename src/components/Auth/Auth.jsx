@@ -79,7 +79,7 @@ export default function Auth() {
   };
 
   return (
-    <div className="body">
+    <div className="body" id="body1">
       <div className={`container ${!isRegister ? "active" : ""}`}>
         <div className="content">
           <div className="right">

@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from "react";
-import s from "./Sessions.module.sass"; // ваш scss-модуль
-import axios from "../../axios"; // проверьте корректность пути к axios
+import s from "./Sessions.module.sass";
+import axios from "../../axios";
+import { Link } from "react-router-dom";
 
-export default function Sessions({ moduleId }) {
+export default function Sessions({ moduleId, onSelectTopic, changeTab }) {
   const [topics, setTopics] = useState([]);
   const [youtubeLink, setYoutubeLink] = useState(null);
   const [videoData, setVideoData] = useState(null);
@@ -11,15 +12,13 @@ export default function Sessions({ moduleId }) {
     if (!moduleId) return;
     const token = localStorage.getItem("access_token");
 
-    // 1) Загружаем сам модуль, чтобы получить ссылку на YouTube
+    // 1) Загружаем модуль, чтобы получить ссылку на YouTube
     axios
       .get(`/module/get_module/${moduleId}`, {
         withCredentials: true,
         headers: { Authorization: `Bearer ${token}` },
       })
       .then((res) => {
-        // Предположим, что бэкенд возвращает объект:
-        // { module: { link: "https://www.youtube.com/watch?v=xxx", ... } }
         const link = res.data?.module?.link;
         if (link) {
           setYoutubeLink(link);
@@ -35,9 +34,24 @@ export default function Sessions({ moduleId }) {
         withCredentials: true,
         headers: { Authorization: `Bearer ${token}` },
       })
-      .then((response) => {
+      .then(async (response) => {
         const allTopics = response.data.topics || [];
-        setTopics(allTopics);
+        const cardCountPromises = allTopics.map((topic) =>
+          axios
+            .get(`/card/get_cards/${topic.id}`, {
+              withCredentials: true,
+              headers: { Authorization: `Bearer ${token}` },
+            })
+            .then((resp) => resp.data.cards?.length || 0)
+            .catch(() => 0)
+        );
+        const cardCounts = await Promise.all(cardCountPromises);
+        const topicsWithCounts = allTopics.map((topic, index) => ({
+          ...topic,
+          cardCount: cardCounts[index],
+        }));
+        console.log(topicsWithCounts);
+        setTopics(topicsWithCounts);
       })
       .catch((err) => {
         console.error("Ошибка при загрузке топиков:", err);
@@ -47,7 +61,6 @@ export default function Sessions({ moduleId }) {
   // 3) Когда youtubeLink появился, запрашиваем данные о видео через oEmbed
   useEffect(() => {
     if (!youtubeLink) return;
-
     const oEmbedUrl = `https://www.youtube.com/oembed?url=${encodeURIComponent(
       youtubeLink
     )}&format=json`;
@@ -62,36 +75,29 @@ export default function Sessions({ moduleId }) {
       });
   }, [youtubeLink]);
 
-  // Если oEmbed ещё не загрузился, показываем заглушку
   if (!videoData) {
     return <p>Loading video details...</p>;
   }
 
-  // Посчитаем общее число топиков
-  const totalSessions = topics.length;
-
   return (
     <div className={s.container}>
-      {/* --- Блок с YouTube-превью из oEmbed --- */}
-
-      {/* --- Блок с сессиями (топиками) --- */}
       <p className={s.sessionsTitle}>Sessions</p>
       <div className={s.sessions}>
         {topics.map((topic, index) => (
           <div key={topic.id} className={s.cardContainer}>
             <div className={s.sessionCard}>
               <div className={s.sessionSide}>
-                <div className={s.syncIcon}>
-                  <img
-                    src="/images/iconsModule/refresh.svg"
-                    alt="Session Icon"
-                  />
-                </div>
+                <Link to={`/session/${moduleId}/${topic.id}/${index + 1}`}>
+                  <div className={s.syncIcon}>
+                    <img
+                      src="/images/iconsModule/refresh.svg"
+                      alt="Session Icon"
+                    />
+                  </div>
+                </Link>
               </div>
               <div className={s.sessionContent}>
                 <div className={s.imageWrapper}>
-                  {/* Если у каждого топика тоже есть своя YouTube‑ссылка,
-                      можно сделать аналогичный oEmbed-запрос или вставить превью */}
                   <img
                     src={videoData.thumbnail_url}
                     className={s.preview}
@@ -101,7 +107,7 @@ export default function Sessions({ moduleId }) {
                     <span className={s.sessionNumber}>{index + 1}</span>
                     <span className={s.sessionTitle}>{topic.name}</span>
                     <div className={s.times}>
-                      <p className={s.cardCount}>{totalSessions} cards</p>
+                      <p className={s.cardCount}>{topic.cardCount} cards</p>
                       <div className={s.timeCodes}>
                         <span>--:-- - --:--</span>
                       </div>
@@ -111,7 +117,16 @@ export default function Sessions({ moduleId }) {
               </div>
             </div>
             <div className={s.buttons}>
-              <button className={s.toCards}>to cards</button>
+              {/* При клике вызываем колбэк для смены таба и выбора топика */}
+              <button
+                className={s.toCards}
+                onClick={() => {
+                  onSelectTopic && onSelectTopic(topic);
+                  changeTab && changeTab("cards");
+                }}
+              >
+                to cards
+              </button>
               <button className={s.toTimeCode}>to time-code</button>
             </div>
           </div>

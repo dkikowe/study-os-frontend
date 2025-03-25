@@ -9,6 +9,7 @@ import Auth from "./components/Auth/Auth";
 import Home from "./Pages/Home/Home";
 import Module from "./Pages/Module/Module";
 import Sphere from "./Pages/Sphere/Sphere";
+import Session from "./Pages/Session/Session";
 
 // Компонент для защиты маршрутов
 const PrivateRoute = ({ element }) => {
@@ -31,6 +32,10 @@ function App() {
           <Route
             path="/sphere/:id"
             element={<PrivateRoute element={<Sphere />} />}
+          />
+          <Route
+            path="/session/:moduleId/:topicId/:sessionNumber"
+            element={<PrivateRoute element={<Session />} />}
           />
         </Routes>
       </div>

@@ -93,6 +93,7 @@
                     justify-content: center
                     align-items: flex-start
                     gap: 10px
+                    width: 80%
                     .moduleName
                         font-family: "Anaheim", sans-serif
                         font-weight: 700
@@ -100,6 +101,11 @@
                         line-height: 116%
                         letter-spacing: -0.01em
                         color: #656565
+                        white-space: nowrap
+                        overflow: hidden
+                        text-overflow: ellipsis
+                        max-width: 100%
+
                     .sessionsQuantity
                         display: flex
                         align-items: center
@@ -123,6 +129,16 @@
 @media (max-width: 768px)
     .div
         display: none
+
+    .moduleName
+        white-space: nowrap
+        overflow: hidden
+        text-overflow: ellipsis
+
+        max-width: 100% !important
+
+    .text
+        width: 100%
 
     .container
         position: static
@@ -164,7 +180,7 @@
                 scroll-snap-type: x mandatory
 
                 .moduleCard
-                    min-width: 160px
+                    min-width: 200px
                     height: 158px
                     scroll-snap-align: start
                     img

@@ -10,6 +10,7 @@ import Home from "./Pages/Home/Home";
 import Module from "./Pages/Module/Module";
 import Sphere from "./Pages/Sphere/Sphere";
 import Session from "./Pages/Session/Session";
+import Notes from "./Pages/Notes/Notes";
 
 // Компонент для защиты маршрутов
 const PrivateRoute = ({ element }) => {
@@ -37,6 +38,7 @@ function App() {
             path="/session/:moduleId/:topicId/:sessionNumber"
             element={<PrivateRoute element={<Session />} />}
           />
+          <Route path="/notes" element={<PrivateRoute element={<Notes />} />} />
         </Routes>
       </div>
     </Router>

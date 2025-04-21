@@ -146,7 +146,7 @@ export default function Courses({ sphereId }) {
           <div key={course.id} className={s.courseContainer}>
             <div className={s.headName}>
               <p className={s.courseName}>
-                {course.name} | <span>Course</span>
+                {course.name} <p className={s.div}>|</p> <span>Course</span>
               </p>
               <div className={s.icon}>
                 <button

@@ -70,12 +70,55 @@ export default function Sphere() {
               <div className={s.buttons}>
                 <p className={s.button}>course</p>
                 <p className={s.button}>module</p>
-                <p className={s.button}>sphere</p>
               </div>
             </div>
             <img src="/images/sphere-icons/Repeat.svg" alt="" />
           </div>
         </div>
+        <Courses sphereId={sphere?.sphere?.id} />
+      </div>
+      <div className={s.mobileVersion}>
+        <div className={s.headerResponsive}>
+          <img src="/images/iconsModule/back.svg" alt="back" />
+          <p className={s.studyOs}>
+            Study<span>OS</span>
+          </p>
+          <img src="/images/iconsModule/iconsMobile.svg" alt="menu" />
+        </div>
+        <h4 className={s.sphereTitle}>
+          {sphere ? sphere.sphere.name : "Loading..."} | <span> Sphere</span>
+        </h4>
+        <p className={s.description}>
+          {sphere?.description ||
+            "English is a West Germanic language in the Indo‑European language family, whose…"}
+          <button className={s.more}>more…</button>
+        </p>
+
+        <div className={s.topGrid}>
+          <img
+            className={s.continueImg}
+            src="/images/sphere-icons/contMobile.svg"
+            alt=""
+          />
+
+          <div className={s.sideColumn}>
+            <div className={s.createCard}>
+              <img src="/images/sphere-icons/X.svg" alt="+" />
+              <div className={s.createButtons}>
+                <p>course</p>
+                <p>module</p>
+              </div>
+            </div>
+
+            <img
+              width={108}
+              height={105}
+              src="/images/sphere-icons/Repeat.svg"
+              alt="repeat"
+            />
+          </div>
+        </div>
+
         <Courses sphereId={sphere?.sphere?.id} />
       </div>
     </div>

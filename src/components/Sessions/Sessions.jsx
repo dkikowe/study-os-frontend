@@ -36,6 +36,7 @@ export default function Sessions({ moduleId, onSelectTopic, changeTab }) {
       })
       .then(async (response) => {
         const allTopics = response.data.topics || [];
+        console.log(allTopics);
         const cardCountPromises = allTopics.map((topic) =>
           axios
             .get(`/card/get_cards/${topic.id}`, {

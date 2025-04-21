@@ -1,0 +1,127 @@
+.container
+    width: 213px
+    font-family: "Anaheim", sans-serif
+    display: flex
+    flex-direction: column
+    height: 100vh
+
+.searchFrame
+    height: 35px
+    padding: 0 10px
+    display: flex
+    align-items: center
+    border: 1px solid #E5E5E5
+    border-radius: 10px
+    background: transparent
+    position: relative
+
+.searchInput
+    width: 100%
+    height: 100%
+    padding: 6.5px 0
+    border: none
+    background: transparent
+    font-family: "Anaheim", sans-serif
+    font-weight: 600
+    font-size: 16px
+    line-height: 22px
+    color: #B8B8B8
+
+    &::placeholder
+        color: #B8B8B8
+
+    &:focus
+        outline: none
+
+.searchIcon
+    width: 24px
+    height: 24px
+    display: flex
+    align-items: center
+    justify-content: center
+
+.list
+    width: 100%
+    padding: 5px 0
+    flex: 1
+    overflow-y: auto
+    display: flex
+    flex-direction: column
+    gap: 10px
+
+.item
+    background: #fff
+    border-radius: 10px
+    color: #b0b0b0
+    cursor: pointer
+    transition: all 0.3s ease
+
+    &.active
+
+        color: #fff
+
+.itemHeader
+    display: flex
+    align-items: center
+    border-radius: 10px
+    padding: 10px
+    gap: 10px
+    img
+        transition: transform 0.3s ease
+        &.rotated
+            transform: rotate(-180deg)
+
+.divider
+    width: 465px
+    height: 2px
+    background: #E6E6E6
+    margin: 10px 0
+
+.itemHead
+    display: flex
+    align-items: center
+    gap: 10px
+    width: 100%
+    position: relative
+    &.active
+
+        color: #fff
+
+.subItems
+    background: #f5f6ff
+
+    .itemHeader
+        padding-left: 20px
+        background: #F5F6FF
+        border-radius: 0
+    .subItems
+        .itemHeader.active
+            background: #6f74ff
+            color: #fff
+            span
+                color: #fff
+        .itemHeader
+            padding-left: 30px
+
+        .subItems
+            .itemHeader
+                padding-left: 50px
+
+.itemHeader.active
+    background: #6f74ff
+    color: #fff
+    span
+        color: #fff
+
+.itemHeader.inactive
+    background-color: #E5E5E5
+    border-radius: 0
+    span
+        color: #fff
+
+.noResults
+    text-align: center
+    padding: 20px
+    color: #b0b0b0
+    font-family: "Anaheim", sans-serif
+    font-size: 16px

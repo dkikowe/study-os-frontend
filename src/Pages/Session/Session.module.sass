@@ -1,10 +1,14 @@
 
 .container
     width: 100vw
+    margin-bottom: 40px
     .mobileContainer
         display: none
         .headerResponsive
             display: none
+    .iconChat
+        width: 35px
+        height: 35px
 
     .dekstopVersion
         display: flex
@@ -13,7 +17,7 @@
         .statusRow
             border-radius: 5px
             padding: 3px
-            width: 966px
+            width: 866px
             height: 20px
             background: #fff
             display: flex
@@ -34,7 +38,7 @@
             margin-right: 30px
             border-radius: 10px
             padding: 10px 20px
-            width: 1006px
+            width: 900px
             margin-top: 100px
             background: #fff
             display: flex
@@ -170,6 +174,118 @@
     &:hover
         cursor: pointer
 
+.detail
+    font-family: "Anaheim", sans-serif
+    font-weight: 600
+    font-size: 16px
+    line-height: 137%
+    color: #656565
+
+.entered
+    width: 90px
+    height: 137px
+    display: flex
+    background: #6F74FF
+    justify-content: center
+    align-items: end
+    border-radius: 0 15px 0 0
+    &:hover
+        cursor: pointer
+    svg
+        margin-bottom: 20px
+
+.reviewBlock
+
+    .reviewAnswer
+        display: flex
+        flex-direction: column
+        gap: 10px
+        .answer
+            font-family: "Anaheim", sans-serif
+            font-weight: 700
+            font-size: 20px
+            line-height: 110%
+            color: #656565
+        .answerText
+            font-family: "Anaheim", sans-serif
+            font-weight: 600
+            font-size: 16px
+            line-height: 137%
+            color: #656565
+    .reviewLine
+        margin-bottom: 10px
+        margin-top: 10px
+        display: flex
+        flex-direction: column
+        gap: 5px
+        .correct
+            font-family: "Anaheim", sans-serif
+            font-weight: 700
+            font-size: 20px
+            line-height: 110%
+            color: #fff
+            border-radius: 5px
+            padding: 0px 5px
+            width: 126px
+            height: 22px
+            background: #b4dd9d
+        .wrong
+            font-family: "Anaheim", sans-serif
+            font-weight: 700
+            font-size: 20px
+            line-height: 110%
+            color: #fff
+            border-radius: 5px
+            padding: 0px 5px
+            width: 207px
+            height: 22px
+            background: #f2abab
+        .more
+            font-family: "Anaheim", sans-serif
+            font-weight: 700
+            font-size: 20px
+            line-height: 110%
+            color: #fff
+            border-radius: 5px
+            padding: 0px 5px
+            width: 166px
+            height: 22px
+            background: #e1e1e1
+
+    .masteryReport
+        display: flex
+        flex-direction: column
+        margin-bottom: 10px
+        margin-top: 20px
+
+        p
+            font-family: "Anaheim", sans-serif
+            font-weight: 700
+            font-size: 20px
+            line-height: 110%
+            color: #656565
+            .grade
+                font-family: "Anaheim", sans-serif
+                font-weight: 700
+                font-size: 20px
+                line-height: 110%
+                color: #ffffff
+                border-radius: 5px
+                padding: 0px 5px
+                width: 46px
+                height: 22px
+                background: #eed1b8
+            span
+                font-family: "Anaheim", sans-serif
+                font-weight: 700
+                font-size: 20px
+                line-height: 110%
+                color: #6f74ff
+
+.forHover
+    &:hover
+        cursor: pointer
+
 @media (max-width: 768px)
     .mobileStatusBox
         width: 30px
@@ -217,6 +333,7 @@
 
     .container
         width: 100vw
+        margin-bottom: 80px
 
         .dekstopVersion
             display: none

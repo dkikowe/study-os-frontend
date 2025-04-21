@@ -83,7 +83,7 @@ export default function Auth() {
       <div className={`container ${!isRegister ? "active" : ""}`}>
         <div className="content">
           <div className="right">
-            <h1 className={isRegister ? "title" : "titleReg"}>
+            <h1 className={isRegister ? "titleReg" : "titleReg"}>
               Study<span>OS</span>
             </h1>
             <input

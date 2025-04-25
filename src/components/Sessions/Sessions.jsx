@@ -1,18 +1,19 @@
 import React, { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import s from "./Sessions.module.sass";
 import axios from "../../axios";
-import { Link } from "react-router-dom";
 
 export default function Sessions({ moduleId, onSelectTopic, changeTab }) {
   const [topics, setTopics] = useState([]);
   const [youtubeLink, setYoutubeLink] = useState(null);
   const [videoData, setVideoData] = useState(null);
+  const navigate = useNavigate();
 
   useEffect(() => {
     if (!moduleId) return;
     const token = localStorage.getItem("access_token");
 
-    // 1) Загружаем модуль, чтобы получить ссылку на YouTube
+    // Получаем модуль и youtube-ссылку
     axios
       .get(`/module/get_module/${moduleId}`, {
         withCredentials: true,
@@ -20,15 +21,13 @@ export default function Sessions({ moduleId, onSelectTopic, changeTab }) {
       })
       .then((res) => {
         const link = res.data?.module?.link;
-        if (link) {
-          setYoutubeLink(link);
-        }
+        if (link) setYoutubeLink(link);
       })
       .catch((err) => {
-        console.error("Ошибка при получении данных модуля:", err);
+        console.error("Ошибка при получении модуля:", err);
       });
 
-    // 2) Загружаем топики (сессии)
+    // Загружаем топики (сессии)
     axios
       .get(`/topic/get_topics/${moduleId}`, {
         withCredentials: true,
@@ -36,7 +35,6 @@ export default function Sessions({ moduleId, onSelectTopic, changeTab }) {
       })
       .then(async (response) => {
         const allTopics = response.data.topics || [];
-        console.log(allTopics);
         const cardCountPromises = allTopics.map((topic) =>
           axios
             .get(`/card/get_cards/${topic.id}`, {
@@ -51,7 +49,6 @@ export default function Sessions({ moduleId, onSelectTopic, changeTab }) {
           ...topic,
           cardCount: cardCounts[index],
         }));
-        console.log(topicsWithCounts);
         setTopics(topicsWithCounts);
       })
       .catch((err) => {
@@ -59,7 +56,6 @@ export default function Sessions({ moduleId, onSelectTopic, changeTab }) {
       });
   }, [moduleId]);
 
-  // 3) Когда youtubeLink появился, запрашиваем данные о видео через oEmbed
   useEffect(() => {
     if (!youtubeLink) return;
     const oEmbedUrl = `https://www.youtube.com/oembed?url=${encodeURIComponent(
@@ -88,14 +84,19 @@ export default function Sessions({ moduleId, onSelectTopic, changeTab }) {
           <div key={topic.id} className={s.cardContainer}>
             <div className={s.sessionCard}>
               <div className={s.sessionSide}>
-                <Link to={`/session/${moduleId}/${topic.id}/${index + 1}`}>
-                  <div className={s.syncIcon}>
-                    <img
-                      src="/images/iconsModule/refresh.svg"
-                      alt="Session Icon"
-                    />
-                  </div>
-                </Link>
+                <div
+                  className={s.syncIcon}
+                  onClick={() =>
+                    navigate(`/session/${moduleId}/${topic.id}/${index + 1}`, {
+                      state: { moduleId }, // передаём moduleId в session
+                    })
+                  }
+                >
+                  <img
+                    src="/images/iconsModule/refresh.svg"
+                    alt="Session Icon"
+                  />
+                </div>
               </div>
               <div className={s.sessionContent}>
                 <div className={s.imageWrapper}>
@@ -118,7 +119,6 @@ export default function Sessions({ moduleId, onSelectTopic, changeTab }) {
               </div>
             </div>
             <div className={s.buttons}>
-              {/* При клике вызываем колбэк для смены таба и выбора топика */}
               <button
                 className={s.toCards}
                 onClick={() => {

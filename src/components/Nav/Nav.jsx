@@ -118,7 +118,14 @@ export default function Nav() {
           </div>
 
           <img src="/images/icons/Line.svg" className={s.line} alt="" />
-          <img src="/images/icons/Notes.svg" className={s.notes} alt="" />
+          <img
+            src="/images/icons/Notes.svg"
+            className={s.notes}
+            alt=""
+            onClick={() => {
+              navigate("/notes");
+            }}
+          />
           <img src="/images/icons/Tags.svg" className={s.tags} alt="" />
         </div>
       </div>

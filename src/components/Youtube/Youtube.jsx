@@ -5,6 +5,7 @@ import s from "./Youtube.module.sass";
 export default function Youtube({ moduleId }) {
   const [videoData, setVideoData] = useState(null);
   const [youtubeLink, setYoutubeLink] = useState(null);
+  const [module, setModule] = useState(null);
 
   // 1. Получаем данные модуля по moduleId, чтобы извлечь YouTube‑ссылку
   useEffect(() => {
@@ -20,6 +21,8 @@ export default function Youtube({ moduleId }) {
         // Предположим, что бэкенд возвращает объект вида:
         // { module: { link: "https://www.youtube.com/watch?v=GeulXZP_kZ8", ... } }
         const link = res.data?.module?.link;
+        const result = res.data?.module;
+        setModule(result);
         console.log("Полученная ссылка из модуля:", link);
         if (link) {
           setYoutubeLink(link);
@@ -50,6 +53,12 @@ export default function Youtube({ moduleId }) {
   if (!videoData) {
     return <p>Loading video details...</p>;
   }
+  const cleanDescription = (text) => {
+    if (!text) return "";
+    return text
+      .replace(/\*\*/g, "") // убираем **
+      .replace(/^Brief Overview:\s*/i, ""); // убираем "Brief Overview:"
+  };
 
   return (
     <div className={s.container}>
@@ -73,7 +82,11 @@ export default function Youtube({ moduleId }) {
         </div>
         <div className={s.titleDesc}>
           {/* oEmbed не возвращает описание и длительность, можно указать заглушки */}
-          <p className={s.textDesc}>Description not available.</p>
+          <p className={s.textDesc}>
+            {module?.description
+              ? cleanDescription(module.description)
+              : "desc"}
+          </p>
           <p className={s.time}>00:00</p>
         </div>
       </div>

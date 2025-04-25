@@ -247,7 +247,7 @@
 }
 
 /* Адаптивность для планшетов */
-@media (max-width: 481px) {
+@media (max-width: 768px) {
   .App {
     background-color: white !important;
   }
@@ -255,7 +255,10 @@
     flex-direction: column;
     width: 90%;
     height: auto;
-    padding: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
   }
 
   .right,
@@ -270,6 +273,7 @@
   .right {
     box-shadow: none;
     margin-bottom: 20px;
+    padding: 20px;
   }
 
   .left {
@@ -312,14 +316,18 @@
   .container {
     width: 90%;
     max-width: 400px;
-    padding: 4vw;
+    padding: 20px;
     box-shadow: none;
     margin-bottom: 80px;
     height: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
   }
 
   .right {
-    padding-top: 40px;
+    padding: 20px;
   }
 
   .right p.error,

@@ -23,7 +23,7 @@ function extractYoutubeId(url) {
   return null;
 }
 
-function ModuleCard({ module }) {
+function ModuleCard({ module, sphereId }) {
   const [topicCount, setTopicCount] = useState(0);
   const navigate = useNavigate();
 
@@ -58,7 +58,11 @@ function ModuleCard({ module }) {
     // При клике переходим на страницу модуля по его id
     <div
       className={s.moduleCard}
-      onClick={() => navigate(`/module/${module.id}`)}
+      onClick={() =>
+        navigate(`/module/${module.id}`, {
+          state: { sphereId: sphereId },
+        })
+      }
     >
       <img src={previewUrl} alt="module preview" />
       <div className={s.text}>
@@ -162,7 +166,11 @@ export default function Courses({ sphereId }) {
             {courseModules.length > 0 ? (
               <div className={s.moduleCards}>
                 {courseModules.map((module, index) => (
-                  <ModuleCard key={module.id || index} module={module} />
+                  <ModuleCard
+                    key={module.id || index}
+                    module={module}
+                    sphereId={sphereId}
+                  />
                 ))}
               </div>
             ) : (

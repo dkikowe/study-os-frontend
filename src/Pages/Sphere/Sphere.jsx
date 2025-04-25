@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import axios from "../../axios.js";
 import s from "./Sphere.module.sass";
 import Nav from "../../components/Nav/Nav";
@@ -9,6 +9,7 @@ import Courses from "../../components/Courses/Courses";
 export default function Sphere() {
   const [sphere, setSphere] = useState(null);
   const { id } = useParams();
+  const navigate = useNavigate();
 
   useEffect(() => {
     const token = localStorage.getItem("access_token");
@@ -79,12 +80,18 @@ export default function Sphere() {
       </div>
       <div className={s.mobileVersion}>
         <div className={s.headerResponsive}>
-          <img src="/images/iconsModule/back.svg" alt="back" />
+          <img
+            src="/images/iconsModule/back.svg"
+            alt="back"
+            onClick={() => navigate("/home")}
+          />
           <p className={s.studyOs}>
             Study<span>OS</span>
           </p>
           <img src="/images/iconsModule/iconsMobile.svg" alt="menu" />
         </div>
+        <hr />
+
         <h4 className={s.sphereTitle}>
           {sphere ? sphere.sphere.name : "Loading..."} | <span> Sphere</span>
         </h4>
@@ -94,30 +101,7 @@ export default function Sphere() {
           <button className={s.more}>more…</button>
         </p>
 
-        <div className={s.topGrid}>
-          <img
-            className={s.continueImg}
-            src="/images/sphere-icons/contMobile.svg"
-            alt=""
-          />
-
-          <div className={s.sideColumn}>
-            <div className={s.createCard}>
-              <img src="/images/sphere-icons/X.svg" alt="+" />
-              <div className={s.createButtons}>
-                <p>course</p>
-                <p>module</p>
-              </div>
-            </div>
-
-            <img
-              width={108}
-              height={105}
-              src="/images/sphere-icons/Repeat.svg"
-              alt="repeat"
-            />
-          </div>
-        </div>
+        <img src="/images/sphere-icons/mobilerecent.svg" alt="" />
 
         <Courses sphereId={sphere?.sphere?.id} />
       </div>

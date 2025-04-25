@@ -96,7 +96,7 @@ export default function VideoMobile({ moduleId }) {
 
   // 4. Настройки плеера
   const videoOptions = {
-    width: "380",
+    width: "340",
     height: "230",
     playerVars: {
       autoplay: 0,

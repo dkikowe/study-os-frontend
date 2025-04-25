@@ -30,6 +30,7 @@
         letter-spacing: -0.01em
         text-align: justify
         color: #918e8e
+        white-space: pre-wrap
 
     .titleText
         .text
@@ -126,7 +127,7 @@
             font-family: "Anaheim", sans-serif
             font-weight: 700
             font-size: 30px
-            line-height: 55%
+
             letter-spacing: -0.01em
             color: #656565
             text-align: left
@@ -147,6 +148,7 @@
             letter-spacing: -0.01em
             text-align: justify
             color: #918e8e
+            white-space: pre-wrap
 
     .mobileTabs
         display: flex
@@ -244,13 +246,14 @@
         flex-direction: column
         justify-content: center
         align-items: center
-        overflow: hidden
-        padding: 0 10px 0 0
+
         .mobileTabs
-            gap: 20px
+            gap: 10px
+            width: 90%
     .container
         min-height: 100vh
-        overflow: hidden
+        overflow-x: hidden
+
     .title
         position: static
         margin-top: 0
@@ -263,9 +266,9 @@
 
         display: flex !important
         flex-direction: row !important
-        width: 95%
-        gap: 60px !important
-        justify-content: center !important
+        width: 100%
+
+        justify-content: space-between !important
         align-content: center !important
 
         z-index: 999999

@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, useLocation, useNavigate } from "react-router-dom";
 import s from "./Session.module.sass";
 import axios from "../../axios";
 import Header from "../../components/Header/Header";
@@ -18,6 +18,7 @@ function getIconByStatus(status) {
 }
 
 export default function Session() {
+  const navigate = useNavigate();
   const { moduleId, topicId, sessionNumber } = useParams();
 
   const [topicName, setTopicName] = useState("");
@@ -247,12 +248,8 @@ export default function Session() {
           <div className={s.titleText}>
             <div className={s.text}>
               <h4 className={s.titleHead}>
-                {topicName
-                  ? topicName.length > 2
-                    ? topicName.slice(2)
-                    : topicName
-                  : "Неизвестно"}{" "}
-                | <span>Session: {sessionNumber}</span>
+                {topicName ? topicName : "Неизвестно"}|{" "}
+                <span>Session: {sessionNumber}</span>
               </h4>
             </div>
           </div>
@@ -476,8 +473,14 @@ export default function Session() {
 
       {/* --- Мобильная версия --- */}
       <div className={s.mobileContainer}>
-        <div className={s.headerResponsive}>
-          <img src="/images/iconsModule/back.svg" alt="" />
+        <div
+          className={isLoading ? s.headerResponsiveHidden : s.headerResponsive}
+        >
+          <img
+            src="/images/iconsModule/back.svg"
+            alt=""
+            onClick={() => navigate(`/module/${moduleId}`)}
+          />
           <p className={s.studyOs}>
             Study <span>OS</span>
           </p>
@@ -520,12 +523,8 @@ export default function Session() {
               <div className={s.mobileTitleText}>
                 <div className={s.mobileText}>
                   <h4 className={s.mobileTitleHead}>
-                    {topicName
-                      ? topicName.length > 2
-                        ? topicName.slice(2)
-                        : topicName
-                      : "Неизвестно"}{" "}
-                    | <span>Session: {sessionNumber}</span>
+                    {topicName ? topicName : "Неизвестно"} |{" "}
+                    <span>Session: {sessionNumber}</span>
                   </h4>
                 </div>
               </div>
@@ -651,7 +650,7 @@ export default function Session() {
                           <p className={s.detail}>{reviewData.moreInfo}</p>
                         </div>
                         <svg
-                          width="357"
+                          width="297"
                           height="91"
                           viewBox="0 0 357 91"
                           fill="none"

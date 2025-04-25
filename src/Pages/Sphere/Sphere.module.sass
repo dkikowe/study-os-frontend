@@ -110,8 +110,11 @@
 .mobileVersion
     display: none
     flex-direction: column
-    padding: 0 16px 80px
-    gap: 16px
+
+    margin-top: 50px
+    hr
+        margin-bottom: 16px
+
     @media (max-width: 768px)
         display: flex
 
@@ -119,11 +122,10 @@
 
         display: flex !important
         flex-direction: row !important
-        width: 95%
-        gap: 60px !important
-        justify-content: center !important
+        width: 100%
+
+        justify-content: space-between !important
         align-content: center !important
-        margin-top: 20px
 
         z-index: 999999
         .icons
@@ -169,6 +171,7 @@
         letter-spacing: -0.01em
         text-align: justify
         color: #918e8e
+        padding: 10px
 
         .more
             border: none
@@ -187,6 +190,10 @@
         display: flex
         position: relative
         margin-bottom: 180px
+        padding: 0 30px
+        width: 100%
+
+        align-items: center
 
     .continueCard
         position: relative

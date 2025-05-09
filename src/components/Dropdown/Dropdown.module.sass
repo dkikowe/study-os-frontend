@@ -66,6 +66,12 @@
     border-radius: 10px
     padding: 10px
     gap: 10px
+    span
+        max-width: 100px
+        white-space: nowrap
+        overflow: hidden
+        text-overflow: ellipsis
+
     img
         transition: transform 0.3s ease
         &.rotated
@@ -125,3 +131,27 @@
     color: #b0b0b0
     font-family: "Anaheim", sans-serif
     font-size: 16px
+
+// Мобильная версия
+@media (max-width: 768px)
+    .container
+        width: 100%
+        height: auto
+        max-height: 400px
+        margin-bottom: 15px
+
+    .list
+        max-height: 320px
+
+    .itemHeader
+        span
+            max-width: 90%
+
+    .item
+        background: #F5F5F5
+
+    .subItems
+        background: #F5F5F5
+
+    .itemHeader
+        background: #F5F5F5

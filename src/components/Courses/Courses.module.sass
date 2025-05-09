@@ -10,18 +10,20 @@
     justify-content: center
     align-items: center
     gap: 10px
+    padding-top: 50px
 
     .courseContainer
         width: 50vw
         display: flex
         flex-direction: column
         gap: 5px
+        margin-top: 30px
 
         .headName
             display: flex
             justify-content: space-between
             align-items: center
-            gap: 400px
+            width: 60vw
 
             .courseName
                 font-family: "Anaheim", sans-serif
@@ -32,6 +34,11 @@
                 color: #656565
                 display: flex
                 align-items: center
+                .coursing
+                    max-width: 200px
+                    white-space: nowrap
+                    overflow: hidden
+                    text-overflow: ellipsis
                 span
                     margin-left: 5px
                     font-family: "Anaheim", sans-serif
@@ -165,6 +172,7 @@
                     line-height: 69%
                     letter-spacing: -0.01em
                     color: #656565
+
                     span
                         display: none
                 .icon

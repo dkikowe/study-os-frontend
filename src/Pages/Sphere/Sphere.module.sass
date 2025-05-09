@@ -13,7 +13,7 @@
 
     .recent
         position: absolute
-        top: 15%
+        top: 18%
         left: 20%
         display: flex
         flex-direction: row
@@ -94,16 +94,26 @@
                 font-family: "Anaheim", sans-serif
                 font-weight: 700
                 font-size: 40px
-                line-height: 55%
-                letter-spacing: -0.01em
+                line-height: 1.2
                 color: #656565
                 text-align: left
+                display: flex
+                flex-direction: row
+                align-items: center
+                gap: 10px
+
+            .sphereNamee
+                display: flex
+                max-width: 200px
+                white-space: nowrap
+                overflow: hidden
+                text-overflow: ellipsis
 
             span
                 font-family: "Anaheim", sans-serif
                 font-weight: 600
                 font-size: 40px
-                line-height: 55%
+                line-height: 1.2
                 letter-spacing: -0.01em
                 color: #656565
 
@@ -152,12 +162,19 @@
         font-family: "Anaheim", sans-serif
         font-weight: 700
         font-size: 30px
-        line-height: 55%
+        line-height: 120%
         letter-spacing: -0.01em
         color: #656565
         display: flex
         justify-content: center
         align-items: center
+        flex-wrap: nowrap
+        max-width: 280px
+        margin: 0 auto
+        white-space: nowrap
+        overflow: hidden
+        text-overflow: ellipsis
+
         span
             color: #656565
             margin-left: 10px

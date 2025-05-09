@@ -53,6 +53,7 @@ const CreateModuleModal = ({ isOpen, onClose, onCreate }) => {
   const [youtubeLink, setYoutubeLink] = useState("");
   const [sphere, setSphere] = useState(null);
   const [course, setCourse] = useState(null);
+  const [error, setError] = useState("");
 
   const [spheres, setSpheres] = useState([]);
   const [courses, setCourses] = useState([]);
@@ -132,8 +133,28 @@ const CreateModuleModal = ({ isOpen, onClose, onCreate }) => {
     fetchModuleById(firstModule.id);
   }, [modules]);
 
+  const validateYoutubeUrl = (url) => {
+    const youtubeRegex = /^(https?:\/\/)?(www\.)?(youtube\.com|youtu\.be)\/.+$/;
+    return youtubeRegex.test(url);
+  };
+
+  const handleYoutubeLinkChange = (e) => {
+    const value = e.target.value;
+    setYoutubeLink(value);
+    setError("");
+
+    if (value && !validateYoutubeUrl(value)) {
+      setError("Please enter a valid YouTube video link");
+    }
+  };
+
   const handleCreateModule = async () => {
     if (!course) return;
+    if (!validateYoutubeUrl(youtubeLink)) {
+      setError("Please enter a valid YouTube video link");
+      return;
+    }
+
     const token = localStorage.getItem("access_token");
 
     const requestData = {
@@ -155,8 +176,10 @@ const CreateModuleModal = ({ isOpen, onClose, onCreate }) => {
       setCourse(null);
       setCourses([]);
       setModules([]);
+      setError("");
     } catch (error) {
       console.error("Ошибка при создании module:", error);
+      setError("An error occurred while creating the module");
     }
   };
 
@@ -183,11 +206,12 @@ const CreateModuleModal = ({ isOpen, onClose, onCreate }) => {
 
         <input
           type="text"
-          className={s.modalInput}
+          className={`${s.modalInput} ${error ? s.error : ""}`}
           placeholder="YouTube link"
           value={youtubeLink}
-          onChange={(e) => setYoutubeLink(e.target.value)}
+          onChange={handleYoutubeLinkChange}
         />
+        {error && <p className={s.errorMessage}>{error}</p>}
 
         <div className={s.text}>
           <p>+PDF</p>

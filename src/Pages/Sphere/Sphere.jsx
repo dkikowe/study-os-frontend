@@ -39,8 +39,10 @@ export default function Sphere() {
             <div className={s.text}>
               <h4 className={s.titleHead}>
                 {/* Если сфера загружена, показываем её название; иначе - "Loading..." */}
-                {sphere ? sphere.sphere.name : "Loading..."} |{" "}
-                <span>Sphere</span>
+                <span className={s.sphereNamee}>
+                  {sphere ? sphere.sphere.name : "Loading..."}
+                </span>
+                | <span>Sphere</span>
               </h4>
               <div className={s.icons}>
                 <img

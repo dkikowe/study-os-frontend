@@ -149,7 +149,13 @@ export default function Nav() {
           onClick={() => setShowSpheres(!showSpheres)}
         />
         <img src="/images/icons/plusHome.svg" alt="" />
-        <img src="/images/icons/more.svg" alt="" />
+        <img
+          src="/images/icons/more.svg"
+          alt=""
+          onClick={() => {
+            navigate("/notes");
+          }}
+        />
         <img src="/images/icons/reshetka.svg" alt="" />
       </div>
 

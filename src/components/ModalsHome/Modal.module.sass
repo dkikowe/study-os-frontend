@@ -130,19 +130,16 @@
 
     .modalInput
       width: 100%
-      padding: 10px
+      padding: 12px
       margin: 10px 0
-      border: 1px solid #ccc
-      border-radius: 15px
-      height: 45px
-      font-family: "Anaheim", sans-serif
-      font-weight: 600
-      font-size: 17px
-      line-height: 129%
-      letter-spacing: -0.01em
-
-      &::placeholder
-        color: #b0b0b0
+      border: 1px solid #e0e0e0
+      border-radius: 8px
+      font-size: 16px
+      &.error
+        border-color: #ff4d4f
+        &:focus
+          outline: none
+          box-shadow: 0 0 0 2px rgba(255, 77, 79, 0.2)
 
     .modalButton
       border-radius: 25px
@@ -336,3 +333,19 @@
 .sphereLabel
   color: #656565
   font-size: 16px
+  display: flex
+  max-width: 100px
+  white-space: nowrap
+  overflow: hidden
+  text-overflow: ellipsis
+
+.errorMessage
+  font-family: "Anaheim", sans-serif
+  font-weight: 600
+  font-size: 17px
+  line-height: 129%
+  letter-spacing: -0.01em
+  color: #ff4d4f
+  margin-top: 4px
+  margin-bottom: 8px
+  text-align: center
